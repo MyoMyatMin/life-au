@@ -52,7 +52,7 @@ async function wordpressFetch<T>(
     },
     next: {
       tags: ["wordpress"],
-      revalidate: 3600, // 1 hour cache
+      //revalidate: 3600, // 1 hour cache
     },
   });
 
@@ -83,7 +83,7 @@ async function wordpressFetchWithPagination<T>(
     },
     next: {
       tags: ["wordpress"],
-      revalidate: 3600, // 1 hour cache
+      //revalidate: 3600, // 1 hour cache
     },
   });
 
@@ -157,7 +157,7 @@ export async function getPostsPaginated(
     },
     next: {
       tags: cacheTags,
-      revalidate: 3600, // 1 hour cache
+      //revalidate: 3600, // 1 hour cache
     },
   });
 
