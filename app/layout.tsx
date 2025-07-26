@@ -1,4 +1,4 @@
-import { ThemeProvider } from "@/components/main/theme-provider";
+import { ThemeProvider } from "@/components/common/themeProvider";
 import "./globals.css";
 
 import { ReactNode } from "react";

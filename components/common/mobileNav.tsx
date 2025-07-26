@@ -11,7 +11,7 @@ import {
   SheetTitle,
   SheetTrigger,
 } from "@/components/ui/sheet";
-import { ThemeToggle } from "@/components/main/theme-toggle";
+import { ThemeToggle } from "@/components/common/themeToggle";
 
 export function MobileNav() {
   const [open, setOpen] = useState(false);

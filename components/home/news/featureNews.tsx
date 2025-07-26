@@ -50,13 +50,14 @@ const newsArticles = [
 
 const FeatureNews = () => {
   return (
-    <section className="py-16 lg:py-24 bg-white dark:bg-gray-900 transition-colors duration-300">
+    <section className="py-16 lg:py-24 bg-gradient-to-br from-gray-100/90 via-blue-100/70 to-red-100/90 dark:from-gray-900/90 dark:via-blue-950/80 dark:to-red-950/90 backdrop-blur-sm transition-colors duration-300">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="text-center mb-12">
-          <h2 className="text-3xl md:text-4xl font-bold text-gray-900 dark:text-white mb-4">
+        {/* Glass header container */}
+        <div className="text-center mb-12 bg-white/70 dark:bg-black/20 backdrop-blur-md rounded-2xl p-8 border border-gray-200/60 dark:border-white/10 shadow-xl">
+          <h2 className="text-3xl md:text-4xl font-bold text-gray-900 dark:text-white mb-4 drop-shadow-sm">
             Latest University News
           </h2>
-          <p className="text-lg text-gray-600 dark:text-gray-300 max-w-2xl mx-auto">
+          <p className="text-lg text-gray-700 dark:text-gray-200 max-w-2xl mx-auto drop-shadow-sm">
             Stay updated with the latest developments, achievements, and
             announcements from our CS department
           </p>
@@ -66,7 +67,7 @@ const FeatureNews = () => {
           {newsArticles.map((article) => (
             <Card
               key={article.id}
-              className="group hover:shadow-lg transition-all duration-300 border-0 shadow-sm bg-white dark:bg-gray-700 dark:hover:bg-gray-600"
+              className="group hover:shadow-2xl transition-all duration-300 shadow-lg bg-white/80 dark:bg-gray-800/60 hover:bg-white/95 dark:hover:bg-gray-700/80 backdrop-blur-md border border-gray-200/60 dark:border-white/10"
             >
               <div className="relative overflow-hidden rounded-t-lg">
                 <Image
@@ -79,17 +80,17 @@ const FeatureNews = () => {
                 <div className="absolute top-4 left-4">
                   <Badge
                     variant="secondary"
-                    className="bg-blue-600 dark:bg-blue-700 text-white text-xs"
+                    className="bg-blue-600/95 dark:bg-blue-700/90 text-white text-xs backdrop-blur-sm border border-white/30 shadow-md"
                   >
                     {article.category}
                   </Badge>
                 </div>
               </div>
               <CardHeader className="pb-2">
-                <CardTitle className="text-base font-semibold text-gray-900 dark:text-white group-hover:text-red-600 dark:group-hover:text-red-400 transition-colors line-clamp-2">
+                <CardTitle className="text-base font-semibold text-gray-900 dark:text-white group-hover:text-red-600 dark:group-hover:text-red-400 transition-colors line-clamp-2 drop-shadow-sm">
                   {article.title}
                 </CardTitle>
-                <div className="flex items-center text-xs text-gray-500 dark:text-gray-400 mb-2">
+                <div className="flex items-center text-xs text-gray-600 dark:text-gray-300 mb-2 drop-shadow-sm">
                   <Calendar className="w-3 h-3 mr-1" />
                   {new Date(article.date).toLocaleDateString("en-US", {
                     year: "numeric",
@@ -97,7 +98,7 @@ const FeatureNews = () => {
                     day: "numeric",
                   })}
                 </div>
-                <CardDescription className="text-sm text-gray-600 dark:text-gray-300 line-clamp-3">
+                <CardDescription className="text-sm text-gray-700 dark:text-gray-200 line-clamp-3 drop-shadow-sm">
                   {article.excerpt}
                 </CardDescription>
               </CardHeader>
@@ -109,7 +110,7 @@ const FeatureNews = () => {
           <Button
             variant="outline"
             size="lg"
-            className="border-red-600 dark:border-red-500 text-red-600 dark:text-red-400 hover:bg-red-600 dark:hover:bg-red-700 hover:text-white bg-transparent"
+            className="border-red-600/80 dark:border-red-500/70 text-red-600 dark:text-red-400 hover:bg-red-600 dark:hover:bg-red-700 hover:text-white bg-white/60 dark:bg-gray-800/30 backdrop-blur-md border-2 shadow-lg"
           >
             Read More News
           </Button>

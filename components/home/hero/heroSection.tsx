@@ -61,18 +61,21 @@ const HeroSection = () => {
 
       <div className="relative z-10 h-full flex items-center justify-center">
         <div className="text-white text-left md:text-center max-w-4xl mx-auto px-4">
-          <h1 className="text-4xl md:text-6xl font-bold mb-6 leading-tight drop-shadow-lg">
-            {slides[currentSlide].title}
-          </h1>
-          <p className="text-xl md:text-2xl mb-8 font-medium text-blue-100 dark:text-blue-200 drop-shadow-md">
-            {slides[currentSlide].subtitle}
-          </p>
-          <Button
-            size="lg"
-            className="bg-red-600 hover:bg-red-700 dark:bg-red-700 dark:hover:bg-red-800 px-8 py-3 rounded-lg text-white font-bold text-lg transition-colors shadow-lg"
-          >
-            Explore Projects
-          </Button>
+          {/* Glass content container */}
+          <div className="bg-white/15 dark:bg-black/20 backdrop-blur-lg rounded-2xl p-8 md:p-12 border border-white/30 dark:border-white/10 shadow-2xl">
+            <h1 className="text-4xl md:text-6xl font-bold mb-6 leading-tight drop-shadow-lg">
+              {slides[currentSlide].title}
+            </h1>
+            <p className="text-xl md:text-2xl mb-8 font-medium text-blue-100 dark:text-blue-200 drop-shadow-md">
+              {slides[currentSlide].subtitle}
+            </p>
+            <Button
+              size="lg"
+              className="bg-red-600/95 hover:bg-red-700 dark:bg-red-700/90 dark:hover:bg-red-800 px-8 py-3 rounded-lg text-white font-bold text-lg transition-all shadow-lg backdrop-blur-sm border border-white/30"
+            >
+              Explore Projects
+            </Button>
+          </div>
         </div>
       </div>
 

@@ -1,7 +1,7 @@
 import Link from "next/link";
 import React from "react";
-import { ThemeToggle } from "./theme-toggle";
-import { MobileNav } from "./mobile-nav";
+import { ThemeToggle } from "./themeToggle";
+import { MobileNav } from "./mobileNav";
 
 const Header = () => {
   return (
