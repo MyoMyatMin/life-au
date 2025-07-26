@@ -10,7 +10,7 @@ export default async function AppDetail({ params }: Props) {
     return (
         <div>
             <h1>App: {id}</h1>
-            <p>This will show details for the app "{id}" on life.au</p>
+            <p>This will show details for the app &apos;{id}&apos; on life.au</p>
         </div>
     );
 }

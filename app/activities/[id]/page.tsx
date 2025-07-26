@@ -10,7 +10,7 @@ export default async function ActivityDetail({ params }: Props) {
     return (
         <div>
             <h1>Activity: {id}</h1>
-            <p>This will show details for the activity "{id}" on life.au</p>
+            <p>This will show details for the activity &apos;{id}&apos; on life.au</p>
         </div>
     );
 }
