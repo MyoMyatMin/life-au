@@ -12,7 +12,6 @@ import type {
   FeaturedMedia,
   Application,
 } from "./wordpress.d";
-import { PHASE_DEVELOPMENT_SERVER } from "next/dist/shared/lib/constants";
 
 const baseUrl = process.env.WORDPRESS_URL;
 
@@ -54,7 +53,7 @@ async function wordpressFetch<T>(
     },
     next: {
       tags: ["wordpress"],
-      revalidate: 1, // 1 hour cache
+      revalidate: 3600, // 1 hour cache
     },
   });
 
@@ -183,10 +182,31 @@ export async function getPostsPaginated(
 }
 
 export async function getAllApplications(): Promise<Application[]> {
-  return wordpressFetch<Application[]>("/wp-json/wp/v2/application", {
+  const url = `${baseUrl}/wp-json/wp/v2/application?${querystring.stringify({
     _embed: true, // for media and other embedded data
     per_page: 3, // get all applications
+  })}`;
+  const userAgent = "Next.js WordPress Client";
+
+  const response = await fetch(url, {
+    headers: {
+      "User-Agent": userAgent,
+    },
+    next: {
+      tags: ["wordpress", "applications"],
+      revalidate: 3600,
+    },
   });
+
+  if (!response.ok) {
+    throw new WordPressAPIError(
+      `WordPress API request failed: ${response.statusText}`,
+      response.status,
+      url
+    );
+  }
+
+  return response.json();
 }
 
 export async function getAllPosts(filterParams?: {
