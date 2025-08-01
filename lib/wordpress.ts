@@ -10,7 +10,9 @@ import type {
   Page,
   Author,
   FeaturedMedia,
+  Application,
 } from "./wordpress.d";
+import { PHASE_DEVELOPMENT_SERVER } from "next/dist/shared/lib/constants";
 
 const baseUrl = process.env.WORDPRESS_URL;
 
@@ -52,7 +54,7 @@ async function wordpressFetch<T>(
     },
     next: {
       tags: ["wordpress"],
-      revalidate: 3600, // 1 hour cache
+      revalidate: 1, // 1 hour cache
     },
   });
 
@@ -178,6 +180,13 @@ export async function getPostsPaginated(
       totalPages: parseInt(response.headers.get("X-WP-TotalPages") || "0", 10),
     },
   };
+}
+
+export async function getAllApplications(): Promise<Application[]> {
+  return wordpressFetch<Application[]>("/wp-json/wp/v2/application", {
+    _embed: true, // for media and other embedded data
+    per_page: 3, // get all applications
+  });
 }
 
 export async function getAllPosts(filterParams?: {

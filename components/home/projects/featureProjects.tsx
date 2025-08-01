@@ -10,6 +10,7 @@ import {
 import { Badge } from "../../ui/badge";
 import { Users } from "lucide-react";
 import { Button } from "../../ui/button";
+import { getAllApplications } from "@/lib/wordpress";
 
 const featuredProjects = [
   {
@@ -80,7 +81,18 @@ const featuredProjects = [
   },
 ];
 
-const FeatureProjects = () => {
+const FeatureProjects = async () => {
+  const appResponse = await getAllApplications();
+  console.log(appResponse, "appResponse");
+
+  const apps = appResponse.slice(0, 6).map((app) => ({
+    id: app.id,
+    title: app.title.rendered,
+    description: app.acf.short_description,
+    image: app.featured_media,
+  }));
+
+  console.log(apps, "featuredProjects");
   return (
     <section className="py-16 lg:py-24 bg-gradient-to-br from-gray-100/90 via-blue-100/70 to-red-100/90 dark:from-gray-900/90 dark:via-blue-950/80 dark:to-red-950/90 backdrop-blur-sm transition-colors duration-300 border-b border-gray-200/50 dark:border-white/10">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">

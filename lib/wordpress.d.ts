@@ -78,6 +78,22 @@ export interface Post extends WPEntity {
   meta: Record<string, unknown>;
 }
 
+export interface Application extends WPEntity {
+  title: RenderedTitle;
+  content: RenderedContent;
+  excerpt: RenderedContent;
+  featured_media: number;
+  acf: {
+    name: string;
+    short_description: string;
+    long_description: string;
+    advisor: string;
+    developer_1: string;
+    developer_2?: string;
+    developer_3?: string;
+  };
+}
+
 export interface Page extends WPEntity {
   title: RenderedTitle;
   content: RenderedContent;
