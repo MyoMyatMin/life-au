@@ -31,8 +31,6 @@ const ProjectCard = async ({ project }: ProjectCardProps) => {
     ? await getFeaturedMediaById(project?.image)
     : null;
 
-  console.log(project);
-
   return (
     <>
       <Card className="group hover:shadow-2xl transition-all duration-300 shadow-lg bg-white/80 dark:bg-gray-800/60 hover:bg-white/95 dark:hover:bg-gray-700/80 backdrop-blur-md border border-gray-200/60 dark:border-white/10 h-full flex flex-col">
