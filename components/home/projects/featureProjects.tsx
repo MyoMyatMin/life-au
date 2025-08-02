@@ -10,7 +10,8 @@ import {
 import { Badge } from "../../ui/badge";
 import { Users } from "lucide-react";
 import { Button } from "../../ui/button";
-import { getAllApplications } from "@/lib/wordpress";
+import { getAllApplications, getFeaturedMediaById } from "@/lib/wordpress";
+import ProjectCard from "./projectCard";
 
 const featuredProjects = [
   {
@@ -82,13 +83,7 @@ const featuredProjects = [
 ];
 
 const FeatureProjects = async () => {
-  const appResponse = await getAllApplications();
-  const apps = appResponse.slice(0, 6).map((app) => ({
-    id: app.id,
-    title: app.title.rendered,
-    description: app.acf.short_description,
-    image: app.featured_media,
-  }));
+  const apps = await getAllApplications();
 
   return (
     <section className="py-16 lg:py-24 bg-gradient-to-br from-gray-100/90 via-blue-100/70 to-red-100/90 dark:from-gray-900/90 dark:via-blue-950/80 dark:to-red-950/90 backdrop-blur-sm transition-colors duration-300 border-b border-gray-200/50 dark:border-white/10">
@@ -104,19 +99,21 @@ const FeatureProjects = async () => {
           </p>
         </div>
 
-        {/* list out the featured projects */}
-        {apps.length > 0 &&
-          apps.map((project) => (
-            <div key={project.id} className="mb-12">
-              <h3 className="text-2xl font-semibold text-gray-900 dark:text-white mb-4">
-                {project.title}
-              </h3>
-              <p className="text-gray-700 dark:text-gray-300 mb-6">
-                {project.description}
-              </p>
-              <p>{project.image}</p>
-            </div>
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mb-12">
+          {apps.map((project) => (
+            <ProjectCard
+              key={project.id || project.name}
+              project={{
+                id: project.id,
+                title: project.name,
+                description: project.short_description,
+                image: project.thumbnail_image,
+              }}
+            />
           ))}
+        </div>
+
+        {/* This section will be deleted in the future, so it is not needed. */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mb-12">
           {featuredProjects.map((project) => (
             <Card

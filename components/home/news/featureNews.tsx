@@ -4,6 +4,8 @@ import Image from "next/image";
 import { Badge } from "../../ui/badge";
 import { Calendar } from "lucide-react";
 import { Button } from "../../ui/button";
+import { getAllNews } from "../../../lib/wordpress";
+import NewsCard from "./newsCard";
 
 const newsArticles = [
   {
@@ -48,7 +50,9 @@ const newsArticles = [
   },
 ];
 
-const FeatureNews = () => {
+const FeatureNews = async () => {
+  const news = await getAllNews();
+
   return (
     <section className="py-16 lg:py-24 bg-gradient-to-br from-gray-100/90 via-blue-100/70 to-red-100/90 dark:from-gray-900/90 dark:via-blue-950/80 dark:to-red-950/90 backdrop-blur-sm transition-colors duration-300">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -63,6 +67,23 @@ const FeatureNews = () => {
           </p>
         </div>
 
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 mb-12">
+          {news.map((article) => (
+            <NewsCard
+              key={article.id}
+              newsArticle={{
+                id: article.id,
+                title: article.title.rendered,
+                content: article.content.rendered,
+                thumbnail_image: article.thumbnail_image,
+                date: article.date,
+                short_description: article.short_description,
+              }}
+            />
+          ))}
+        </div>
+
+        {/* This section will be deleted in the future, so it is not needed. */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 mb-12">
           {newsArticles.map((article) => (
             <Card
