@@ -32,12 +32,6 @@ export async function POST(request: NextRequest) {
     }
 
     try {
-      console.log(
-        `Revalidating content: ${contentType}${
-          contentId ? ` (ID: ${contentId})` : ""
-        }`
-      );
-
       // Revalidate specific content type tags
       revalidateTag("wordpress");
 
@@ -65,6 +59,16 @@ export async function POST(request: NextRequest) {
         if (contentId) {
           revalidateTag(`posts-author-${contentId}`);
           revalidateTag(`author-${contentId}`);
+        }
+      } else if (contentType === "application") {
+        revalidateTag("applications");
+        if (contentId) {
+          revalidateTag(`application-${contentId}`);
+        }
+      } else if (contentType === "news") {
+        revalidateTag("news");
+        if (contentId) {
+          revalidateTag(`news-${contentId}`);
         }
       }
 

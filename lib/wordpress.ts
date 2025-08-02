@@ -10,6 +10,10 @@ import type {
   Page,
   Author,
   FeaturedMedia,
+  Application,
+  ApplicationResponse,
+  NewsResponse,
+  News,
 } from "./wordpress.d";
 
 const baseUrl = process.env.WORDPRESS_URL;
@@ -178,6 +182,80 @@ export async function getPostsPaginated(
       totalPages: parseInt(response.headers.get("X-WP-TotalPages") || "0", 10),
     },
   };
+}
+
+export async function getAllApplications(): Promise<ApplicationResponse[]> {
+  const url = `${baseUrl}/wp-json/wp/v2/application?${querystring.stringify({
+    _embed: true, // for media and other embedded data
+    per_page: 10, // get all applications
+  })}`;
+  const userAgent = "Next.js WordPress Client";
+
+  const response = await fetch(url, {
+    headers: {
+      "User-Agent": userAgent,
+    },
+    next: {
+      tags: ["wordpress", "applications"],
+      revalidate: 3600,
+    },
+  });
+
+  if (!response.ok) {
+    throw new WordPressAPIError(
+      `WordPress API request failed: ${response.statusText}`,
+      response.status,
+      url
+    );
+  }
+  return response.json().then((data) => {
+    return data.map((app: Application) => ({
+      name: app.acf.name,
+      short_description: app.acf.short_description,
+      long_description: app.acf.long_description,
+      advisor: app.acf.advisor,
+      developer_1: app.acf.developer_1,
+      developer_2: app.acf.developer_2,
+      developer_3: app.acf.developer_3,
+      thumbnail_image: app.featured_media,
+    }));
+  });
+}
+
+export async function getAllNews(): Promise<NewsResponse[]> {
+  const url = `${baseUrl}/wp-json/wp/v2/news?${querystring.stringify({
+    _embed: true, // for media and other embedded data
+    per_page: 10, // get all applications
+  })}`;
+  const userAgent = "Next.js WordPress Client";
+
+  const response = await fetch(url, {
+    headers: {
+      "User-Agent": userAgent,
+    },
+    next: {
+      tags: ["wordpress", "news"],
+      revalidate: 3600,
+    },
+  });
+
+  if (!response.ok) {
+    throw new WordPressAPIError(
+      `WordPress API request failed: ${response.statusText}`,
+      response.status,
+      url
+    );
+  }
+  return response.json().then((data) => {
+    return data.map((news: News) => ({
+      id: news.id,
+      title: news.title.rendered,
+      content: news.content.rendered,
+      thumbnail_image: news.featured_media,
+      date: news.date,
+      short_description: news.acf.short_description,
+    }));
+  });
 }
 
 export async function getAllPosts(filterParams?: {
