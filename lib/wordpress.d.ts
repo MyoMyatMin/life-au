@@ -108,8 +108,8 @@ export interface News extends WPEntity {
 
 export interface NewsResponse {
   id: number;
-  title: RenderedTitle;
-  content: RenderedContent;
+  title: string;
+  content: string;
   excerpt: RenderedContent;
   thumbnail_image?: number;
   date: string;

@@ -73,8 +73,8 @@ const FeatureNews = async () => {
               key={article.id}
               newsArticle={{
                 id: article.id,
-                title: article.title.rendered,
-                content: article.content.rendered,
+                title: article.title,
+                content: article.content,
                 thumbnail_image: article.thumbnail_image,
                 date: article.date,
                 short_description: article.short_description,

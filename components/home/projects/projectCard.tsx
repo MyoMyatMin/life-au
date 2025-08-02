@@ -13,7 +13,6 @@ import { getAllApplications, getFeaturedMediaById } from "@/lib/wordpress";
 import Image from "next/image";
 
 interface Project {
-  key?: number;
   id: number;
   title: string;
   description: string;
@@ -27,8 +26,8 @@ interface ProjectCardProps {
   project: Project;
 }
 const ProjectCard = async ({ project }: ProjectCardProps) => {
-  const thumbnailImageRetrieved = project.image
-    ? await getFeaturedMediaById(project.image)
+  const thumbnailImageRetrieved = project?.image
+    ? await getFeaturedMediaById(project?.image)
     : null;
   return (
     <>
@@ -52,7 +51,7 @@ const ProjectCard = async ({ project }: ProjectCardProps) => {
               variant="secondary"
               className="bg-red-600/95 dark:bg-red-700/90 text-white backdrop-blur-sm border border-white/30 shadow-md"
             >
-              {project.category}
+              {project?.category && project.category}
             </Badge>
           </div>
         </div>

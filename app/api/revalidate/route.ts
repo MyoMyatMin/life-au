@@ -65,6 +65,11 @@ export async function POST(request: NextRequest) {
         if (contentId) {
           revalidateTag(`application-${contentId}`);
         }
+      } else if (contentType === "news") {
+        revalidateTag("news");
+        if (contentId) {
+          revalidateTag(`news-${contentId}`);
+        }
       }
 
       // Also revalidate the entire layout for safety

@@ -6,7 +6,6 @@ import { Calendar } from "lucide-react";
 import { getFeaturedMediaById } from "../../../lib/wordpress";
 
 interface NewsArticle {
-  key?: number;
   id: number;
   title: string;
   content: string;
@@ -21,8 +20,8 @@ interface NewsCardProps {
   newsArticle: NewsArticle;
 }
 const NewsCard = async ({ newsArticle }: NewsCardProps) => {
-  const thumbnailImageRetrieved = newsArticle.thumbnail_image
-    ? await getFeaturedMediaById(newsArticle.thumbnail_image)
+  const thumbnailImageRetrieved = newsArticle?.thumbnail_image
+    ? await getFeaturedMediaById(newsArticle?.thumbnail_image)
     : null;
   return (
     <>
@@ -46,7 +45,7 @@ const NewsCard = async ({ newsArticle }: NewsCardProps) => {
               variant="secondary"
               className="bg-blue-600/95 dark:bg-blue-700/90 text-white text-xs backdrop-blur-sm border border-white/30 shadow-md"
             >
-              {newsArticle.category}
+              {newsArticle?.category}
             </Badge>
           </div>
         </div>
@@ -63,7 +62,7 @@ const NewsCard = async ({ newsArticle }: NewsCardProps) => {
             })}
           </div>
           <CardDescription className="text-sm text-gray-700 dark:text-gray-200 line-clamp-3 drop-shadow-sm">
-            {newsArticle.excerpt}
+            {newsArticle?.excerpt}
           </CardDescription>
         </CardHeader>
       </Card>

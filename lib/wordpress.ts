@@ -234,7 +234,7 @@ export async function getAllNews(): Promise<NewsResponse[]> {
       "User-Agent": userAgent,
     },
     next: {
-      tags: ["wordpress", "applications"],
+      tags: ["wordpress", "news"],
       revalidate: 3600,
     },
   });
