@@ -223,7 +223,7 @@ export async function getAllApplications(): Promise<ApplicationResponse[]> {
 }
 
 export async function getAllNews(): Promise<NewsResponse[]> {
-  const url = `${baseUrl}/wp-json/wp/v2/new?${querystring.stringify({
+  const url = `${baseUrl}/wp-json/wp/v2/news?${querystring.stringify({
     _embed: true, // for media and other embedded data
     per_page: 10, // get all applications
   })}`;
