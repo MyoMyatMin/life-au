@@ -66,7 +66,7 @@ const FeatureNews = async () => {
             announcements from our CS department
           </p>
         </div>
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mb-12">
+        <div className="grid grid-cols-1 md:grid-cols-2  gap-6 mb-12">
           {news.map((article) => (
             <NewsCard
               key={article.id}
@@ -83,11 +83,11 @@ const FeatureNews = async () => {
         </div>
 
         {/* This section will be deleted in the future, so it is not needed. */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mb-12">
+        {/* <div className="grid grid-cols-1 md:grid-cols-2  gap-6 mb-12">
           {newsArticles.map((article) => (
             <Card
               key={article.id}
-              className="group hover:shadow-2xl transition-all duration-300 shadow-lg bg-white/80 dark:bg-gray-800/60 hover:bg-white/95 dark:hover:bg-gray-700/80 backdrop-blur-md border border-gray-200/60 dark:border-white/10 flex flex-row overflow-hidden min-h-[280px] cursor-pointer "
+              className="group hover:shadow-2xl transition-all duration-300 shadow-lg bg-white/80 dark:bg-gray-800/60 hover:bg-white/95 dark:hover:bg-gray-700/80 backdrop-blur-md border border-gray-200/60 dark:border-white/10 flex flex-row overflow-hidden min-h-[280px]  max-w-[520px] w-full cursor-pointer "
             >
               <div className="relative overflow-hidden w-1/2 min-h-[280px]">
                 <Image
@@ -124,7 +124,7 @@ const FeatureNews = async () => {
               </CardHeader>
             </Card>
           ))}
-        </div>
+        </div> */}
 
         <div className="text-center">
           <Button

@@ -23,7 +23,7 @@ const NewsCard = async ({ newsArticle }: NewsCardProps) => {
     : null;
   return (
     <>
-      <Card className="group hover:shadow-2xl transition-all duration-300 shadow-lg bg-white/80 dark:bg-gray-800/60 hover:bg-white/95 dark:hover:bg-gray-700/80 backdrop-blur-md border border-gray-200/60 dark:border-white/10 flex flex-row overflow-hidden min-h-[280px] cursor-pointer">
+      <Card className="group hover:shadow-2xl transition-all duration-300 shadow-lg bg-white/80 dark:bg-gray-800/60 hover:bg-white/95 dark:hover:bg-gray-700/80 backdrop-blur-md border border-gray-200/60 dark:border-white/10 flex flex-row overflow-hidden min-h-[280px] max-w-[520px] w-full cursor-pointer">
         <div className="relative overflow-hidden w-1/2 min-h-[280px]">
           {thumbnailImageRetrieved?.source_url ? (
             <Image
