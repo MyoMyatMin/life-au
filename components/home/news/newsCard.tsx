@@ -23,7 +23,7 @@ const NewsCard = async ({ newsArticle }: NewsCardProps) => {
     : null;
   return (
     <>
-      <Card className="group hover:shadow-2xl transition-all duration-300 shadow-lg bg-white/80 dark:bg-gray-800/60 hover:bg-white/95 dark:hover:bg-gray-700/80 backdrop-blur-md border border-gray-200/60 dark:border-white/10 flex flex-row overflow-hidden min-h-[280px]">
+      <Card className="group hover:shadow-2xl transition-all duration-300 shadow-lg bg-white/80 dark:bg-gray-800/60 hover:bg-white/95 dark:hover:bg-gray-700/80 backdrop-blur-md border border-gray-200/60 dark:border-white/10 flex flex-row overflow-hidden min-h-[280px] cursor-pointer">
         <div className="relative overflow-hidden w-1/2 min-h-[280px]">
           {thumbnailImageRetrieved?.source_url ? (
             <Image
@@ -38,16 +38,15 @@ const NewsCard = async ({ newsArticle }: NewsCardProps) => {
               No image available
             </div>
           )}
-          {newsArticle?.category && (
-            <div className="absolute top-3 left-3">
-              <Badge
-                variant="secondary"
-                className="bg-blue-600/95 dark:bg-blue-700/90 text-white text-xs backdrop-blur-sm border border-white/30 shadow-md"
-              >
-                {newsArticle.category}
-              </Badge>
-            </div>
-          )}
+
+          <div className="absolute top-3 left-3">
+            <Badge
+              variant="secondary"
+              className="bg-blue-600/95 dark:bg-blue-700/90 text-white text-xs backdrop-blur-sm border border-white/30 shadow-md"
+            >
+              {newsArticle.category || "General"}
+            </Badge>
+          </div>
         </div>
         <CardHeader className="pb-4 flex-1 w-1/2 p-6">
           <CardTitle className="text-lg font-bold text-gray-900 dark:text-white group-hover:text-red-600 dark:group-hover:text-red-400 transition-colors line-clamp-2 drop-shadow-sm mb-3">
