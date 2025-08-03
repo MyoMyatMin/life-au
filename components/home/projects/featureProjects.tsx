@@ -86,7 +86,7 @@ const FeatureProjects = async () => {
   const apps = await getAllApplications();
 
   return (
-    <section className="py-16 lg:py-24 bg-gradient-to-br from-gray-100/90 via-blue-100/70 to-red-100/90 dark:from-gray-900/90 dark:via-blue-950/80 dark:to-red-950/90 backdrop-blur-sm transition-colors duration-300 border-b border-gray-200/50 dark:border-white/10">
+    <section className="py-16 lg:py-24 bg-gradient-to-br from-gray-100/90 via-blue-100/70 to-red-100/90 dark:from-gray-900/90 dark:via-blue-950/80 dark:to-red-950/90 backdrop-blur-sm transition-colors duration-300 border-b border-gray-200/50 dark:border-white/10 ">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Glass header container */}
         <div className="text-center mb-12 bg-white/70 dark:bg-black/20 backdrop-blur-md rounded-2xl p-8 border border-gray-200/60 dark:border-white/10 shadow-xl">
@@ -113,12 +113,12 @@ const FeatureProjects = async () => {
           ))}
         </div>
 
-        {/* This section will be deleted in the future, so it is not needed. */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mb-12">
+        {/* Fixed hardcoded projects section */}
+        {/* <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mb-12">
           {featuredProjects.map((project) => (
             <Card
               key={project.id}
-              className="group hover:shadow-2xl transition-all duration-300 shadow-lg bg-white/80 dark:bg-gray-800/60 hover:bg-white/95 dark:hover:bg-gray-700/80 backdrop-blur-md border border-gray-200/60 dark:border-white/10"
+              className="group hover:shadow-2xl transition-all duration-300 shadow-lg bg-white/80 dark:bg-gray-800/60 hover:bg-white/95 dark:hover:bg-gray-700/80 backdrop-blur-md border border-gray-200/60 dark:border-white/10 h-full flex flex-col cursor-pointer"
             >
               <div className="relative overflow-hidden rounded-t-lg">
                 <Image
@@ -137,34 +137,40 @@ const FeatureProjects = async () => {
                   </Badge>
                 </div>
               </div>
-              <CardHeader className="pb-3">
-                <CardTitle className="text-lg font-semibold text-gray-900 dark:text-white group-hover:text-red-600 dark:group-hover:text-red-400 transition-colors drop-shadow-sm">
-                  {project.title}
-                </CardTitle>
-                <CardDescription className="text-sm text-gray-700 dark:text-gray-200 line-clamp-3 drop-shadow-sm">
-                  {project.description}
-                </CardDescription>
-              </CardHeader>
-              <CardContent className="pt-0">
-                <div className="flex flex-wrap gap-2 mb-4">
-                  {project.techStack.map((tech) => (
-                    <Badge
-                      key={tech}
-                      variant="outline"
-                      className="text-xs border-gray-300/80 dark:border-gray-400/40 text-gray-700 dark:text-gray-200 bg-gray-50/80 dark:bg-gray-700/40 backdrop-blur-sm"
-                    >
-                      {tech}
-                    </Badge>
-                  ))}
-                </div>
-                <div className="flex items-center text-sm text-gray-600 dark:text-gray-300 drop-shadow-sm">
-                  <Users className="w-4 h-4 mr-2" />
-                  {project.students.join(", ")}
-                </div>
-              </CardContent>
+
+              <div className="flex flex-col flex-grow">
+                <CardHeader className="pb-3 flex-shrink-0">
+                  <CardTitle className="text-lg font-semibold text-gray-900 dark:text-white group-hover:text-red-600 dark:group-hover:text-red-400 transition-colors drop-shadow-sm">
+                    {project.title}
+                  </CardTitle>
+                  <CardDescription className="text-sm text-gray-700 dark:text-gray-200 line-clamp-3 drop-shadow-sm min-h-[4.5rem]">
+                    {project.description}
+                  </CardDescription>
+                </CardHeader>
+
+                <div className="flex-grow"></div>
+
+                <CardContent className="pt-0 flex-shrink-0">
+                  <div className="flex flex-wrap gap-2 mb-4">
+                    {project.techStack.map((tech) => (
+                      <Badge
+                        key={tech}
+                        variant="outline"
+                        className="text-xs border-gray-300/80 dark:border-gray-400/40 text-gray-700 dark:text-gray-200 bg-gray-50/80 dark:bg-gray-700/40 backdrop-blur-sm"
+                      >
+                        {tech}
+                      </Badge>
+                    ))}
+                  </div>
+                  <div className="flex items-center text-sm text-gray-600 dark:text-gray-300 drop-shadow-sm">
+                    <Users className="w-4 h-4 mr-2" />
+                    {project.students.join(", ")}
+                  </div>
+                </CardContent>
+              </div>
             </Card>
           ))}
-        </div>
+        </div> */}
 
         <div className="text-center">
           <Button
