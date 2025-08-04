@@ -54,36 +54,39 @@ const FeatureNews = async () => {
   const news = await getAllNews();
 
   return (
-    <section className="py-16 lg:py-24 bg-gradient-to-br from-gray-100/90 via-blue-100/70 to-red-100/90 dark:from-gray-900/90 dark:via-blue-950/80 dark:to-red-950/90 backdrop-blur-sm transition-colors duration-300">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        {/* Glass header container */}
-        <div className="text-center mb-12 bg-white/70 dark:bg-black/20 backdrop-blur-md rounded-2xl p-8 border border-gray-200/60 dark:border-white/10 shadow-xl">
-          <h2 className="text-3xl md:text-4xl font-bold text-gray-900 dark:text-white mb-4 drop-shadow-sm">
-            Latest University News
-          </h2>
-          <p className="text-lg text-gray-700 dark:text-gray-200 max-w-2xl mx-auto drop-shadow-sm">
-            Stay updated with the latest developments, achievements, and
-            announcements from our CS department
-          </p>
+    <>
+      {/* Divider Line */}
+      <div className="">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="border-t border-gray-300/60 dark:border-gray-600/40"></div>
         </div>
-        <div className="grid grid-cols-1 md:grid-cols-2  gap-6 mb-12">
-          {news.map((article) => (
-            <NewsCard
-              key={article.id}
-              newsArticle={{
-                id: article.id,
-                title: article.title,
-                content: article.content,
-                thumbnail_image: article.thumbnail_image,
-                date: article.date,
-                short_description: article.short_description,
-              }}
-            />
-          ))}
-        </div>
+      </div>
 
-        {/* This section will be deleted in the future, so it is not needed. */}
-        {/* <div className="grid grid-cols-1 md:grid-cols-2  gap-6 mb-12">
+      <section className="py-16 lg:py-24">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="text-center mb-12">
+            <h2 className="text-3xl md:text-4xl font-bold text-gray-900 dark:text-white mb-4 drop-shadow-sm">
+              Student Activities
+            </h2>
+          </div>
+          <div className="grid grid-cols-1 md:grid-cols-2  gap-6 mb-12">
+            {news.slice(0, 2).map((article) => (
+              <NewsCard
+                key={article.id}
+                newsArticle={{
+                  id: article.id,
+                  title: article.title,
+                  content: article.content,
+                  thumbnail_image: article.thumbnail_image,
+                  date: article.date,
+                  short_description: article.short_description,
+                }}
+              />
+            ))}
+          </div>
+
+          {/* This section will be deleted in the future, so it is not needed. */}
+          {/* <div className="grid grid-cols-1 md:grid-cols-2  gap-6 mb-12">
           {newsArticles.map((article) => (
             <Card
               key={article.id}
@@ -126,17 +129,18 @@ const FeatureNews = async () => {
           ))}
         </div> */}
 
-        <div className="text-center">
-          <Button
-            variant="outline"
-            size="lg"
-            className="border-red-600/80 dark:border-red-500/70 text-red-600 dark:text-red-400 hover:bg-red-600 dark:hover:bg-red-700 hover:text-white bg-white/60 dark:bg-gray-800/30 backdrop-blur-md border-2 shadow-lg"
-          >
-            Read More News
-          </Button>
+          <div className="text-center">
+            <Button
+              variant="outline"
+              size="lg"
+              className="border-red-600/80 dark:border-red-500/70 text-red-600 dark:text-red-400 hover:bg-red-600 dark:hover:bg-red-700 hover:text-white bg-white/60 dark:bg-gray-800/30 backdrop-blur-md border-2 shadow-lg"
+            >
+              See more
+            </Button>
+          </div>
         </div>
-      </div>
-    </section>
+      </section>
+    </>
   );
 };
 

@@ -1,4 +1,11 @@
-import { Github, Linkedin, Mail, Twitter } from "lucide-react";
+import {
+  Facebook,
+  Github,
+  Instagram,
+  Linkedin,
+  Mail,
+  Twitter,
+} from "lucide-react";
 import Link from "next/link";
 import React from "react";
 
@@ -24,19 +31,19 @@ const Footer = () => {
                 href="#"
                 className="text-white/70 hover:text-white transition-colors p-2 rounded-full bg-white/10 dark:bg-white/5 hover:bg-white/20 dark:hover:bg-white/10 backdrop-blur-sm"
               >
-                <Twitter className="w-5 h-5" />
+                <Facebook className="w-5 h-5" />
+              </Link>
+              <Link
+                href="#"
+                className="text-white/70 hover:text-white transition-colors p-2 rounded-full bg-white/10 dark:bg-white/5 hover:bg-white/20 dark:hover:bg-white/10 backdrop-blur-sm"
+              >
+                <Instagram className="w-5 h-5" />
               </Link>
               <Link
                 href="#"
                 className="text-white/70 hover:text-white transition-colors p-2 rounded-full bg-white/10 dark:bg-white/5 hover:bg-white/20 dark:hover:bg-white/10 backdrop-blur-sm"
               >
                 <Linkedin className="w-5 h-5" />
-              </Link>
-              <Link
-                href="#"
-                className="text-white/70 hover:text-white transition-colors p-2 rounded-full bg-white/10 dark:bg-white/5 hover:bg-white/20 dark:hover:bg-white/10 backdrop-blur-sm"
-              >
-                <Github className="w-5 h-5" />
               </Link>
             </div>
           </div>
@@ -62,22 +69,6 @@ const Footer = () => {
                   Latest News
                 </Link>
               </li>
-              <li>
-                <Link
-                  href="/about"
-                  className="text-white/80 hover:text-red-400 dark:hover:text-red-300 transition-colors drop-shadow-sm"
-                >
-                  About Us
-                </Link>
-              </li>
-              <li>
-                <Link
-                  href="/contact"
-                  className="text-white/80 hover:text-red-400 dark:hover:text-red-300 transition-colors drop-shadow-sm"
-                >
-                  Contact
-                </Link>
-              </li>
             </ul>
           </div>
 
@@ -93,7 +84,7 @@ const Footer = () => {
               <p className="text-sm drop-shadow-sm">
                 Computer Science Department
               </p>
-              <p className="text-sm drop-shadow-sm">Australian University</p>
+              <p className="text-sm drop-shadow-sm">Assumption University</p>
               <p className="text-sm drop-shadow-sm">Sydney, NSW 2000</p>
             </div>
           </div>
