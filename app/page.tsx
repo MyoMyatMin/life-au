@@ -1,8 +1,9 @@
-import HeroSection from "@/components/home/hero/heroSection";
-import FeatureProjects from "@/components/home/projects/featureProjects";
-import FeatureNews from "@/components/home/news/featureNews";
-import Footer from "@/components/common/footer";
 import Header from "@/components/common/header";
+import Footer from "@/components/common/footer";
+import HeroSection from "@/components/home/heroSection";
+import HighlightAppsSection from "@/components/home/highlightAppsSection";
+import StudentActivitiesSection from "@/components/home/highlightNewsSection";
+import SectionDivider from "@/components/home/sectionDivider";
 
 export default function HomePage() {
   return (
@@ -13,11 +14,17 @@ export default function HomePage() {
       {/* Hero Section */}
       <HeroSection />
 
-      {/* Featured Projects Section */}
-      <FeatureProjects />
+      {/* Section Divider */}
+      <SectionDivider />
 
-      {/* News Section */}
-      <FeatureNews />
+      {/* Highlight Apps Section */}
+      <HighlightAppsSection />
+
+      {/* Section Divider */}
+      <SectionDivider />
+
+      {/* Student Activities Section */}
+      <StudentActivitiesSection />
 
       {/* Footer */}
       <Footer />

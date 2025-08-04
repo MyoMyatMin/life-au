@@ -18,10 +18,8 @@ export function MobileNav() {
 
   const navigation = [
     { name: "Home", href: "/" },
-    { name: "Projects", href: "/projects" },
+    { name: "Apps", href: "/apps" },
     { name: "News", href: "/news" },
-    { name: "About", href: "/about" },
-    { name: "Contact", href: "/contact" },
   ];
 
   return (
@@ -29,7 +27,7 @@ export function MobileNav() {
       <SheetTrigger asChild>
         <Button
           variant="ghost"
-          className="md:hidden h-10 w-10 p-0 text-white hover:bg-white/20 hover:text-white"
+          className="h-10 w-10 p-0 text-white hover:bg-white/20 hover:text-white"
         >
           <Menu className="h-6 w-6" />
           <span className="sr-only">Toggle menu</span>
@@ -46,7 +44,7 @@ export function MobileNav() {
               className="text-2xl font-bold text-white drop-shadow-lg"
               onClick={() => setOpen(false)}
             >
-              Life<span className="text-red-400 dark:text-red-300">.AU</span>
+              Life<span className="text-red-600 dark:text-red-500">.AU</span>
             </Link>
           </SheetTitle>
         </SheetHeader>
