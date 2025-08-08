@@ -81,6 +81,7 @@ const FeatureNews = async () => {
                   thumbnail_image: article.thumbnail_image,
                   date: article.date,
                   short_description: article.short_description,
+                  category: article.category,
                 }}
               />
             ))}

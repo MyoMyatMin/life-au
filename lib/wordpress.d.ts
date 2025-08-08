@@ -83,7 +83,7 @@ export interface Application extends WPEntity {
   title: RenderedTitle;
   content: RenderedContent;
   excerpt: RenderedContent;
-
+  app_category: number[];
   featured_media: number;
   acf: {
     name: string;
@@ -101,6 +101,7 @@ export interface News extends WPEntity {
   content: RenderedContent;
   excerpt: RenderedContent;
   featured_media: number;
+  news_category: number[];
   acf: {
     short_description: string;
     date: string;
@@ -115,6 +116,7 @@ export interface NewsResponse {
   thumbnail_image?: number;
   date: string;
   short_description: string;
+  category?: number;
 }
 
 export interface ApplicationResponse {
@@ -127,6 +129,7 @@ export interface ApplicationResponse {
   developer_2?: string;
   developer_3?: string;
   thumbnail_image?: number;
+  category?: number;
 }
 
 export interface Page extends WPEntity {
