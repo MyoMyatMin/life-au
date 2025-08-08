@@ -3,7 +3,10 @@ import { Card, CardDescription, CardHeader, CardTitle } from "../../ui/card";
 import Image from "next/image";
 import { Badge } from "../../ui/badge";
 import { Calendar } from "lucide-react";
-import { getFeaturedMediaById } from "../../../lib/wordpress";
+import {
+  getFeaturedMediaById,
+  getNewsCategoryById,
+} from "../../../lib/wordpress";
 interface NewsArticle {
   id: number;
   title: string;
@@ -11,7 +14,7 @@ interface NewsArticle {
   thumbnail_image?: number;
   date: string;
   short_description: string;
-  category?: string;
+  category?: number;
   excerpt?: string;
 }
 interface NewsCardProps {
@@ -21,6 +24,11 @@ const NewsCard = async ({ newsArticle }: NewsCardProps) => {
   const thumbnailImageRetrieved = newsArticle?.thumbnail_image
     ? await getFeaturedMediaById(newsArticle?.thumbnail_image)
     : null;
+
+  const category = newsArticle?.category
+    ? await getNewsCategoryById(newsArticle?.category)
+    : null;
+
   return (
     <>
       <Card className="group hover:shadow-2xl transition-all duration-300 shadow-lg bg-white/80 dark:bg-gray-800/60 hover:bg-white/95 dark:hover:bg-gray-700/80 backdrop-blur-md border border-gray-200/60 dark:border-white/10 flex flex-row overflow-hidden min-h-[280px] max-w-[520px] w-full cursor-pointer">
@@ -44,7 +52,7 @@ const NewsCard = async ({ newsArticle }: NewsCardProps) => {
               variant="secondary"
               className="bg-blue-600/95 dark:bg-blue-700/90 text-white text-xs backdrop-blur-sm border border-white/30 shadow-md"
             >
-              {newsArticle.category || "General"}
+              {category?.name || "General"}
             </Badge>
           </div>
         </div>

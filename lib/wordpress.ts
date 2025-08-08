@@ -257,6 +257,7 @@ export async function getAllNews(): Promise<NewsResponse[]> {
       thumbnail_image: news.featured_media,
       date: news.date,
       short_description: news.acf.short_description,
+      category: news.news_category[0],
     }));
   });
 }
@@ -321,6 +322,10 @@ export async function getAppCategoryById(id: number): Promise<Category> {
   return wordpressFetch<Category>(`/wp-json/wp/v2/app_category/${id}`);
 }
 
+export async function getNewsCategoryById(id: number): Promise<Category> {
+  return wordpressFetch<Category>(`/wp-json/wp/v2/news_category/${id}`);
+}
+
 export async function getCategoryBySlug(slug: string): Promise<Category> {
   return wordpressFetch<Category[]>("/wp-json/wp/v2/categories", { slug }).then(
     (categories) => categories[0]
@@ -332,7 +337,6 @@ export async function getPostsByCategory(categoryId: number): Promise<Post[]> {
     categories: categoryId,
   });
 }
-
 export async function getPostsByTag(tagId: number): Promise<Post[]> {
   return wordpressFetch<Post[]>("/wp-json/wp/v2/posts", { tags: tagId });
 }

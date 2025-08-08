@@ -100,6 +100,7 @@ export interface News extends WPEntity {
   content: RenderedContent;
   excerpt: RenderedContent;
   featured_media: number;
+  news_category: number[];
   acf: {
     short_description: string;
     date: string;
@@ -114,6 +115,7 @@ export interface NewsResponse {
   thumbnail_image?: number;
   date: string;
   short_description: string;
+  category?: number;
 }
 
 export interface ApplicationResponse {

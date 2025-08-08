@@ -13,6 +13,8 @@ export default async function News() {
           <h2>{activity.title}</h2>
           <p>{activity.short_description}</p>
           <p>{activity.date}</p>
+          <p>category id: {activity?.category}</p>
+          <p>thumbnail image id: {activity?.thumbnail_image}</p>
           <hr />
         </div>
       ))}
