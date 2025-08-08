@@ -210,6 +210,7 @@ export async function getAllApplications(): Promise<ApplicationResponse[]> {
   }
   return response.json().then((data) => {
     return data.map((app: Application) => ({
+      id: app.id,
       name: app.acf.name,
       short_description: app.acf.short_description,
       long_description: app.acf.long_description,
@@ -299,6 +300,54 @@ export async function getAllPosts(filterParams?: {
 export async function getPostById(id: number): Promise<Post> {
   return wordpressFetch<Post>(`/wp-json/wp/v2/posts/${id}`);
 }
+
+export async function getApplicationById(
+  id: number
+): Promise<ApplicationResponse> {
+  const response = wordpressFetch<Application>(
+    `/wp-json/wp/v2/application/${id}`
+  );
+
+  console.log("Application Details:", response);
+
+  return response.then((app) => ({
+    id: app.id,
+    name: app.acf.name,
+    short_description: app.acf.short_description,
+    long_description: app.acf.long_description,
+    advisor: app.acf.advisor,
+    developer_1: app.acf.developer_1,
+    developer_2: app.acf.developer_2,
+    developer_3: app.acf.developer_3,
+    thumbnail_image: app.featured_media,
+    category: app.app_category[0],
+  }));
+}
+
+// id: number;
+//   title: string;
+//   content: string;
+//   excerpt: RenderedContent;
+//   thumbnail_image?: number;
+//   date: string;
+//   short_description: string;
+//   category?: number;
+
+// export async function getNewsById(id: number): Promise<NewsResponse> {
+//   const response = wordpressFetch<News>(`/wp-json/wp/v2/news/${id}`);
+
+//   console.log("News Details:", response);
+//   return response.then((news) => ({
+//     id: news.id,
+//     title: news.title?.rendered,
+//     content: news.content?.rendered,
+//     excerpt: news.excerpt.rendered,
+//     thumbnail_image: news.featured_media,
+//     date: news.date,
+//     short_description: news.acf.short_description,
+//     category: news.news_category[0],
+//   }));
+// }
 
 export async function getPostBySlug(slug: string): Promise<Post> {
   return wordpressFetch<Post[]>("/wp-json/wp/v2/posts", { slug }).then(

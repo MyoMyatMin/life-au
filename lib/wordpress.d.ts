@@ -79,6 +79,7 @@ export interface Post extends WPEntity {
 }
 
 export interface Application extends WPEntity {
+  id: number;
   title: RenderedTitle;
   content: RenderedContent;
   excerpt: RenderedContent;
