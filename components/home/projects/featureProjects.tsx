@@ -12,6 +12,7 @@ import { Users } from "lucide-react";
 import { Button } from "../../ui/button";
 import { getAllApplications, getFeaturedMediaById } from "@/lib/wordpress";
 import ProjectCard from "./projectCard";
+import Link from "next/link";
 
 const featuredProjects = [
   {
@@ -167,7 +168,7 @@ const FeatureProjects = async () => {
           ))}
         </div> */}
 
-        <div className="text-center">
+        <Link className="flex items-center justify-center" href="/apps">
           <Button
             variant="outline"
             size="lg"
@@ -175,7 +176,7 @@ const FeatureProjects = async () => {
           >
             See more
           </Button>
-        </div>
+        </Link>
       </div>
     </section>
   );

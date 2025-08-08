@@ -21,10 +21,10 @@ const Header = () => {
           <div className="hidden md:flex items-center space-x-4">
             <nav className="flex space-x-8 items-center">
               <Link
-                href="/projects"
+                href="/apps"
                 className="text-white/90 hover:text-red-400 dark:hover:text-red-300 font-medium transition-colors drop-shadow-sm"
               >
-                Projects
+                Apps
               </Link>
               <Link
                 href="/news"

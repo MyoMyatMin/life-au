@@ -6,6 +6,7 @@ import { Calendar } from "lucide-react";
 import { Button } from "../../ui/button";
 import { getAllNews } from "../../../lib/wordpress";
 import NewsCard from "./newsCard";
+import Link from "next/link";
 
 const newsArticles = [
   {
@@ -129,7 +130,7 @@ const FeatureNews = async () => {
           ))}
         </div> */}
 
-          <div className="text-center">
+          <Link className="flex items-center justify-center" href="/news">
             <Button
               variant="outline"
               size="lg"
@@ -137,7 +138,7 @@ const FeatureNews = async () => {
             >
               See more
             </Button>
-          </div>
+          </Link>
         </div>
       </section>
     </>
