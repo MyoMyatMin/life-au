@@ -5,7 +5,6 @@
 import querystring from "query-string";
 import type {
   Post,
-  Category,
   Tag,
   Page,
   Author,
@@ -14,7 +13,9 @@ import type {
   ApplicationResponse,
   NewsResponse,
   News,
+  Category,
 } from "./wordpress.d";
+import { createFetch } from "next/dist/client/components/router-reducer/fetch-server-response";
 
 const baseUrl = process.env.WORDPRESS_URL;
 
@@ -197,9 +198,10 @@ export async function getAllApplications(): Promise<ApplicationResponse[]> {
     },
     next: {
       tags: ["wordpress", "applications"],
-      revalidate: 3600,
+      revalidate: 3600, // 1 hour cache
     },
   });
+  console.log(response);
 
   if (!response.ok) {
     throw new WordPressAPIError(
@@ -218,6 +220,7 @@ export async function getAllApplications(): Promise<ApplicationResponse[]> {
       developer_2: app.acf.developer_2,
       developer_3: app.acf.developer_3,
       thumbnail_image: app.featured_media,
+      category: app.app_category[0],
     }));
   });
 }
@@ -312,6 +315,10 @@ export async function getAllCategories(): Promise<Category[]> {
 
 export async function getCategoryById(id: number): Promise<Category> {
   return wordpressFetch<Category>(`/wp-json/wp/v2/categories/${id}`);
+}
+
+export async function getAppCategoryById(id: number): Promise<Category> {
+  return wordpressFetch<Category>(`/wp-json/wp/v2/app_category/${id}`);
 }
 
 export async function getCategoryBySlug(slug: string): Promise<Category> {

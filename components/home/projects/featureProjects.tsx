@@ -10,7 +10,7 @@ import {
 import { Badge } from "../../ui/badge";
 import { Users } from "lucide-react";
 import { Button } from "../../ui/button";
-import { getAllApplications, getFeaturedMediaById } from "@/lib/wordpress";
+import { getAllApplications } from "@/lib/wordpress";
 import ProjectCard from "./projectCard";
 import Link from "next/link";
 
@@ -104,6 +104,7 @@ const FeatureProjects = async () => {
                 title: project.name,
                 description: project.short_description,
                 image: project.thumbnail_image,
+                category: project.category,
               }}
             />
           ))}

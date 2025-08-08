@@ -9,9 +9,12 @@ import {
 import { Badge } from "../../ui/badge";
 import { Users } from "lucide-react";
 import { Button } from "../../ui/button";
-import { getAllApplications, getFeaturedMediaById } from "@/lib/wordpress";
+import {
+  getAllApplications,
+  getAppCategoryById,
+  getFeaturedMediaById,
+} from "@/lib/wordpress";
 import Image from "next/image";
-
 interface Project {
   id: number;
   title: string;
@@ -19,7 +22,7 @@ interface Project {
   image?: number;
   techStack?: string[];
   students?: string[];
-  category?: string;
+  category?: number;
 }
 
 interface ProjectCardProps {
@@ -29,6 +32,10 @@ interface ProjectCardProps {
 const ProjectCard = async ({ project }: ProjectCardProps) => {
   const thumbnailImageRetrieved = project?.image
     ? await getFeaturedMediaById(project?.image)
+    : null;
+
+  const category = project.category
+    ? await getAppCategoryById(Number(project?.category))
     : null;
 
   return (
@@ -55,7 +62,7 @@ const ProjectCard = async ({ project }: ProjectCardProps) => {
               variant="secondary"
               className="bg-red-600/95 dark:bg-red-700/90 text-white backdrop-blur-sm border border-white/30 shadow-md"
             >
-              {project.category || "General"}
+              {category?.name || "General"}
             </Badge>
           </div>
         </div>

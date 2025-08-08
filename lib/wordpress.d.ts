@@ -82,7 +82,7 @@ export interface Application extends WPEntity {
   title: RenderedTitle;
   content: RenderedContent;
   excerpt: RenderedContent;
-
+  app_category: number[];
   featured_media: number;
   acf: {
     name: string;
@@ -126,6 +126,7 @@ export interface ApplicationResponse {
   developer_2?: string;
   developer_3?: string;
   thumbnail_image?: number;
+  category?: number;
 }
 
 export interface Page extends WPEntity {
