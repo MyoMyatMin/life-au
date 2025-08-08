@@ -2,6 +2,7 @@ import { ThemeProvider } from "@/components/common/themeProvider";
 import "./globals.css";
 
 import { ReactNode } from "react";
+import Header from "@/components/common/header";
 
 export default function RootLayout({ children }: { children: ReactNode }) {
   return (
@@ -15,6 +16,7 @@ export default function RootLayout({ children }: { children: ReactNode }) {
             enableSystem
             disableTransitionOnChange
           >
+            <Header />
             {children}
           </ThemeProvider>
         </body>
