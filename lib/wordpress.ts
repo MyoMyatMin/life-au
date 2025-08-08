@@ -201,7 +201,6 @@ export async function getAllApplications(): Promise<ApplicationResponse[]> {
       revalidate: 3600, // 1 hour cache
     },
   });
-  console.log(response);
 
   if (!response.ok) {
     throw new WordPressAPIError(
@@ -312,8 +311,6 @@ export async function getApplicationById(
     `/wp-json/wp/v2/application/${id}`
   );
 
-  console.log("Application Details:", response);
-
   return response.then((app) => ({
     id: app.id,
     name: app.acf.name,
@@ -328,30 +325,20 @@ export async function getApplicationById(
   }));
 }
 
-// id: number;
-//   title: string;
-//   content: string;
-//   excerpt: RenderedContent;
-//   thumbnail_image?: number;
-//   date: string;
-//   short_description: string;
-//   category?: number;
+export async function getNewsById(id: number): Promise<NewsResponse> {
+  const response = wordpressFetch<News>(`/wp-json/wp/v2/news/${id}`);
 
-// export async function getNewsById(id: number): Promise<NewsResponse> {
-//   const response = wordpressFetch<News>(`/wp-json/wp/v2/news/${id}`);
-
-//   console.log("News Details:", response);
-//   return response.then((news) => ({
-//     id: news.id,
-//     title: news.title?.rendered,
-//     content: news.content?.rendered,
-//     excerpt: news.excerpt.rendered,
-//     thumbnail_image: news.featured_media,
-//     date: news.date,
-//     short_description: news.acf.short_description,
-//     category: news.news_category[0],
-//   }));
-// }
+  return response.then((news) => ({
+    id: news.id,
+    title: news.title?.rendered,
+    content: news.content?.rendered,
+    excerpt: news.excerpt,
+    thumbnail_image: news.featured_media,
+    date: news.date,
+    short_description: news.acf.short_description,
+    category: news.news_category[0],
+  }));
+}
 
 export async function getPostBySlug(slug: string): Promise<Post> {
   return wordpressFetch<Post[]>("/wp-json/wp/v2/posts", { slug }).then(

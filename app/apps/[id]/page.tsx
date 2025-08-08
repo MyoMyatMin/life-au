@@ -5,6 +5,7 @@ import {
   getCategoryById,
   getAppCategoryById,
 } from "@/lib/wordpress";
+import Image from "next/image";
 
 type Props = {
   params: Promise<{
@@ -52,7 +53,7 @@ export default async function AppDetail({ params }: Props) {
           {category && <p>Category Name: {category.name}</p>}
           <p>Thumbnail Image ID: {app.thumbnail_image}</p>
           {thumbnailImageRetrieved?.source_url ? (
-            <img
+            <Image
               src={thumbnailImageRetrieved.source_url}
               alt={app.name || "App thumbnail"}
               width={400}
