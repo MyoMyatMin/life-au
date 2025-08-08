@@ -12,6 +12,7 @@ import { Users } from "lucide-react";
 import { Button } from "../../ui/button";
 import { getAllApplications, getFeaturedMediaById } from "@/lib/wordpress";
 import ProjectCard from "./projectCard";
+import Link from "next/link";
 
 const featuredProjects = [
   {
@@ -86,21 +87,16 @@ const FeatureProjects = async () => {
   const apps = await getAllApplications();
 
   return (
-    <section className="py-16 lg:py-24 bg-gradient-to-br from-gray-100/90 via-blue-100/70 to-red-100/90 dark:from-gray-900/90 dark:via-blue-950/80 dark:to-red-950/90 backdrop-blur-sm transition-colors duration-300 border-b border-gray-200/50 dark:border-white/10 ">
+    <section className="py-16 lg:py-24">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        {/* Glass header container */}
-        <div className="text-center mb-12 bg-white/70 dark:bg-black/20 backdrop-blur-md rounded-2xl p-8 border border-gray-200/60 dark:border-white/10 shadow-xl">
+        <div className="text-center mb-12">
           <h2 className="text-3xl md:text-4xl font-bold text-gray-900 dark:text-white mb-4 drop-shadow-sm">
-            Popular Senior Projects
+            Highlight Apps
           </h2>
-          <p className="text-lg text-gray-700 dark:text-gray-200 max-w-2xl mx-auto drop-shadow-sm">
-            Explore innovative solutions and cutting-edge research from our
-            talented computer science students
-          </p>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mb-12">
-          {apps.map((project) => (
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mb-12">
+          {apps.slice(0, 3).map((project) => (
             <ProjectCard
               key={project.id || project.name}
               project={{
@@ -172,15 +168,15 @@ const FeatureProjects = async () => {
           ))}
         </div> */}
 
-        <div className="text-center">
+        <Link className="flex items-center justify-center" href="/apps">
           <Button
             variant="outline"
             size="lg"
             className="border-red-600/80 dark:border-red-500/70 text-red-600 dark:text-red-400 hover:bg-red-600 dark:hover:bg-red-700 hover:text-white bg-white/60 dark:bg-gray-800/30 backdrop-blur-md border-2 shadow-lg"
           >
-            View All Projects
+            See more
           </Button>
-        </div>
+        </Link>
       </div>
     </section>
   );

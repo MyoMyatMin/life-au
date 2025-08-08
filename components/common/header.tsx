@@ -19,18 +19,12 @@ const Header = () => {
 
           {/* Desktop Navigation */}
           <div className="hidden md:flex items-center space-x-4">
-            <nav className="flex space-x-8">
+            <nav className="flex space-x-8 items-center">
               <Link
-                href="/"
-                className="text-white hover:text-red-400 dark:hover:text-red-300 font-medium transition-colors drop-shadow-sm"
-              >
-                Home
-              </Link>
-              <Link
-                href="/projects"
+                href="/apps"
                 className="text-white/90 hover:text-red-400 dark:hover:text-red-300 font-medium transition-colors drop-shadow-sm"
               >
-                Projects
+                Apps
               </Link>
               <Link
                 href="/news"
@@ -38,20 +32,8 @@ const Header = () => {
               >
                 News
               </Link>
-              <Link
-                href="/about"
-                className="text-white/90 hover:text-red-400 dark:hover:text-red-300 font-medium transition-colors drop-shadow-sm"
-              >
-                About
-              </Link>
-              <Link
-                href="/contact"
-                className="text-white/90 hover:text-red-400 dark:hover:text-red-300 font-medium transition-colors drop-shadow-sm"
-              >
-                Contact
-              </Link>
+              <ThemeToggle />
             </nav>
-            <ThemeToggle />
           </div>
 
           {/* Mobile Navigation */}
