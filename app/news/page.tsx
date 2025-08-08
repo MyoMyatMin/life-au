@@ -3,7 +3,7 @@ import { getAllNews } from "@/lib/wordpress";
 export default async function News() {
   const news = await getAllNews();
   return (
-    <div>
+    <div className="p-6 mt-20">
       <h1>Activities Page</h1>
       <p>This will show the activities on life.au</p>
 
