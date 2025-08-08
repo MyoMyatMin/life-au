@@ -2,7 +2,7 @@ import { getAllApplications } from "@/lib/wordpress";
 export default async function Apps() {
   const apps = await getAllApplications();
   return (
-    <div>
+    <div className="p-6 mt-20">
       <h1>Apps Page</h1>
       <p>This will show the app on life.au</p>
       <hr />

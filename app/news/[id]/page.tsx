@@ -35,7 +35,7 @@ export default async function NewsDetail({ params }: Props) {
     : null;
 
   return (
-    <div>
+    <div className="p-6 mt-20">
       <h1>News: {id}</h1>
       <p>This will show details for the news &apos;{id}&apos; on life.au</p>
       {news && (
