@@ -39,15 +39,21 @@ export default async function AppDetail({ params }: Props) {
     ? await getAppCategoryById(app?.category)
     : null;
 
+  const appScreens = await Promise.all(
+    [app.app_screen_1, app.app_screen_2, app.app_screen_3, app.app_screen_4]
+      .filter(Boolean)
+      .map((screenId) => getFeaturedMediaById(Number(screenId)))
+  );
+
   const developedBy = [
     app.developer_1,
     app.developer_2,
     app.developer_3,
   ].filter(Boolean) as string[];
 
-  const images = thumbnailImageRetrieved?.source_url
-    ? [thumbnailImageRetrieved.source_url]
-    : [];
+  const images = appScreens
+    .map((screen) => (screen?.source_url ? screen.source_url : null))
+    .filter(Boolean) as string[];
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-blue-100/80 via-gray-50 to-red-100/80 dark:from-blue-950 dark:via-gray-900 dark:to-red-950 transition-colors duration-300">
