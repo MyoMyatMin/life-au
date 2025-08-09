@@ -11,9 +11,39 @@ type Props = {
   altBase?: string;
 };
 
-export default function AppMediaSlider({ images, altBase = "App image" }: Props) {
+export default function AppMediaSlider({
+  images,
+  altBase = "App image",
+}: Props) {
   const rootRef = useRef<HTMLDivElement | null>(null);
   const splideRef = useRef<Splide | null>(null);
+
+  // Always call useEffect, but only run Splide logic if images.length >= 2
+  useEffect(() => {
+    if (!rootRef.current) return;
+    if (!images || images.length < 2) return;
+
+    splideRef.current = new Splide(rootRef.current, {
+      type: "loop",
+      autoplay: true,
+      interval: 3000,
+      pauseOnHover: false,
+      arrows: false,
+      pagination: false,
+      cover: true,
+      heightRatio: 0.5,
+      rewind: true,
+    });
+
+    splideRef.current.mount();
+
+    return () => {
+      try {
+        splideRef.current?.destroy();
+      } catch {}
+      splideRef.current = null;
+    };
+  }, [images]);
 
   // 0 images → simple placeholder (no Splide)
   if (!images || images.length === 0) {
@@ -40,32 +70,7 @@ export default function AppMediaSlider({ images, altBase = "App image" }: Props)
     );
   }
 
-  // 2+ images → mount Splide on the actual element via ref
-  useEffect(() => {
-    if (!rootRef.current) return;
-
-    splideRef.current = new Splide(rootRef.current, {
-      type: "loop",
-      autoplay: true,
-      interval: 3000,
-      pauseOnHover: false,
-      arrows: false,
-      pagination: false,
-      cover: true,
-      heightRatio: 0.5,
-      rewind: true,
-    });
-
-    splideRef.current.mount();
-
-    return () => {
-      try {
-        splideRef.current?.destroy();
-      } catch {}
-      splideRef.current = null;
-    };
-  }, []);
-
+  // 2+ images → render Splide
   return (
     <div ref={rootRef} className="splide">
       <div className="splide__track">

@@ -31,7 +31,7 @@ export default async function AppDetail({ params }: Props) {
     return <div className="p-6 mt-24">Application not found</div>;
   }
 
-    const thumbnailImageRetrieved = app?.thumbnail_image
+  const thumbnailImageRetrieved = app?.thumbnail_image
     ? await getFeaturedMediaById(app?.thumbnail_image)
     : null;
 
@@ -39,12 +39,15 @@ export default async function AppDetail({ params }: Props) {
     ? await getAppCategoryById(app?.category)
     : null;
 
-  const developedBy = [app.developer_1, app.developer_2, app.developer_3].filter(Boolean);
+  const developedBy = [
+    app.developer_1,
+    app.developer_2,
+    app.developer_3,
+  ].filter(Boolean) as string[];
 
   const images = thumbnailImageRetrieved?.source_url
-  ? [thumbnailImageRetrieved.source_url]
-  : [];
-
+    ? [thumbnailImageRetrieved.source_url]
+    : [];
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-blue-100/80 via-gray-50 to-red-100/80 dark:from-blue-950 dark:via-gray-900 dark:to-red-950 transition-colors duration-300">
@@ -75,7 +78,6 @@ export default async function AppDetail({ params }: Props) {
                     {category.name}
                   </span>
                 )}
-
               </div>
               {app.short_description && (
                 <p className="text-sm text-neutral-700 dark:text-neutral-300">
@@ -130,7 +132,9 @@ export default async function AppDetail({ params }: Props) {
                 </h4>
                 <ul className="mt-2 list-inside list-disc text-sm text-neutral-700 dark:text-neutral-300">
                   {developedBy.length ? (
-                    developedBy.map((n: string, idx: number) => <li key={idx}>{n}</li>)
+                    developedBy.map((n: string, idx: number) => (
+                      <li key={idx}>{n}</li>
+                    ))
                   ) : (
                     <li>—</li>
                   )}
