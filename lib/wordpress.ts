@@ -545,4 +545,35 @@ export async function getPostsByAuthorPaginated(
   return wordpressFetchWithPagination<Post[]>("/wp-json/wp/v2/posts", query);
 }
 
+//Pagination and Search
+export async function getNewsPaginated(
+    page: number = 1,
+    perPage: number = 9,
+    filter?: { search?: string; category?: string }
+): Promise<WordPressResponse<NewsResponse[]>> {
+    const query: Record<string, any> = { _embed: true, per_page: perPage, page };
+    if (filter?.search) query.search = filter.search;
+    if (filter?.category) query.news_category = filter.category;
+
+    // Use your existing helper so headers.totalPages work
+    const { data, headers } = await wordpressFetchWithPagination<News[]>(
+        "/wp-json/wp/v2/news",
+        query
+    );
+
+    // Map raw WP -> your NewsResponse shape (same as getAllNews)
+    const mapped: NewsResponse[] = data.map((news) => ({
+        id: news.id,
+        title: news.title?.rendered,
+        content: news.content?.rendered,
+        excerpt: news.excerpt, // keep if you use it
+        thumbnail_image: news.featured_media,
+        date: news.date,
+        short_description: news.acf?.short_description,
+        category: news.news_category?.[0],
+    }));
+
+    return { data: mapped, headers };
+}
+
 export { WordPressAPIError };
