@@ -6,7 +6,7 @@ import {
 } from "@/lib/wordpress";
 import Image from "next/image";
 
-type RouteParams = { params: { id: string } };
+type RouteParams = { params: Promise<{ id: string }> };
 
 export async function generateStaticParams() {
   const allNews = await getAllNews();
@@ -27,7 +27,7 @@ function formatDate(iso?: string) {
 }
 
 export default async function Page({ params }: RouteParams) {
-  const id = params.id;
+  const id = (await params).id;
 
   const news = await getNewsById(Number(id));
   if (!news) return <div className="p-6">News not found</div>;
