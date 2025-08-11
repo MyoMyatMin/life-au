@@ -1,9 +1,10 @@
 import {
+  getAllNews,
   getNewsPaginated,
   WordPressAPIError,
   WordPressResponse,
 } from "@/lib/wordpress";
-
+import PageHeader from "@/components/common/pageHeader";
 import NewsCard from "@/components/home/news/newsCard";
 import SearchForm from "@/components/common/searchForm";
 import Pagination from "@/components/common/pagination";
@@ -35,26 +36,30 @@ export default async function NewsPage({
   const headers = newsResult.headers;
 
   return (
-    <div className="p-6 mt-20 max-w-6xl mx-auto">
-      <h1 className="text-2xl font-bold mb-4">News</h1>
-
+    <div className="min-h-screen bg-page-gradient">
+      <PageHeader
+        title="News"
+        description="Stay updated with our latest news and updates!"
+      />
+      <div className="p-6 max-w-6xl mx-auto">
         <div className="flex justify-end mb-6">
-            <SearchForm basePath="/news" initialQuery={q} className="mb-6" />
+          <SearchForm basePath="/news" initialQuery={q} className="mb-6" />
         </div>
 
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-        {data.map((item) => (
-          <NewsCard key={item.id} newsArticle={item} />
-        ))}
-      </div>
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+          {data.map((item) => (
+            <NewsCard key={item.id} newsArticle={item} />
+          ))}
+        </div>
 
-      <Pagination
-        currentPage={page}
-        totalPages={headers.totalPages}
-        q={q}
-        basePath="/news"
-        minVisiblePages={Math.ceil(data.length / perPage)}
-      />
+        <Pagination
+          currentPage={page}
+          totalPages={headers.totalPages}
+          q={q}
+          basePath="/news"
+          minVisiblePages={Math.ceil(data.length / perPage)}
+        />
+      </div>
     </div>
   );
 }
