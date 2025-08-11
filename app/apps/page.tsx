@@ -1,22 +1,24 @@
 import { getAllApplications } from "@/lib/wordpress";
+import PageHeader from "@/components/common/pageHeader";
+
 export default async function Apps() {
   const apps = await getAllApplications();
   return (
-    <div className="p-6 mt-20">
-      <h1>Apps Page</h1>
-      <p>This will show the app on life.au</p>
-      <hr />
-      <ul>
+    <div className="min-h-screen bg-page-gradient">
+      <PageHeader title="Apps" description="Explore our Apps!" />
+      {/* to be implemented later */}
+      <div>
         {apps.map((app) => (
-          <li key={app.id || app.name}>
+          <div key={app.id || app.name}>
             <h2>{app.name}</h2>
             <p>{app.short_description}</p>
             <p>Category: {app.category}</p>
-            <p>FeaturedMedia : {app.thumbnail_image}</p>
-            <hr />
-          </li>
+            {app.thumbnail_image && (
+              <p>Featured Media: {app.thumbnail_image}</p>
+            )}
+          </div>
         ))}
-      </ul>
+      </div>
     </div>
   );
 }
