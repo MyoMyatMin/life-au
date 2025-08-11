@@ -44,14 +44,7 @@ const AppCard = ({ app }: AppCardProps) => {
                             </div>
                         )}
 
-                        <div className="absolute top-4 left-4">
-                            <Badge
-                                variant="secondary"
-                                className="bg-red-600/95 dark:bg-red-700/90 text-white backdrop-blur-sm border border-white/30 shadow-md"
-                            >
-                                {app.category_name || "General"}
-                            </Badge>
-                        </div>
+
                     </div>
 
                     {/* Content area with proper flex structure */}
@@ -65,8 +58,16 @@ const AppCard = ({ app }: AppCardProps) => {
                             </CardDescription>
                         </CardHeader>
 
-                        <CardContent className="pt-0 flex-shrink-0"></CardContent>
+                        <CardContent className="pt-0 flex-shrink-0">
+                            <Badge
+                                variant="secondary"
+                                className="bg-red-600/95 dark:bg-red-700/90 text-white backdrop-blur-sm border border-white/30 shadow-md"
+                            >
+                                {app.category_name || "General"}
+                            </Badge>
+                        </CardContent>
                     </div>
+
                 </Card>
             </Link>
         </>
