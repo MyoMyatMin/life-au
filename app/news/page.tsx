@@ -38,7 +38,9 @@ export default async function NewsPage({
     <div className="p-6 mt-20 max-w-6xl mx-auto">
       <h1 className="text-2xl font-bold mb-4">News</h1>
 
-      <SearchForm basePath="/news" initialQuery={q} className="mb-6" />
+        <div className="flex justify-end mb-6">
+            <SearchForm basePath="/news" initialQuery={q} className="mb-6" />
+        </div>
 
       <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
         {data.map((item) => (
