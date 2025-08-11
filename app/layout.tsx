@@ -3,6 +3,7 @@ import "./globals.css";
 
 import { ReactNode } from "react";
 import Header from "@/components/common/header";
+import Footer from "@/components/common/footer";
 
 export default function RootLayout({ children }: { children: ReactNode }) {
   return (
@@ -18,6 +19,7 @@ export default function RootLayout({ children }: { children: ReactNode }) {
           >
             <Header />
             {children}
+            <Footer />
           </ThemeProvider>
         </body>
       </html>

@@ -30,7 +30,17 @@ export default async function NewsDetail({ params }: Props) {
   const id = (await params).id;
 
   const news = await getNewsById(Number(id));
-  if (!news) return <div className="p-6">News not found</div>;
+  if (!news) {
+    return (
+      <div className="min-h-screen bg-page-gradient flex items-center justify-center">
+        <div className="text-center">
+          <h1 className="text-2xl font-bold text-red-600 dark:text-red-400">
+            News not found
+          </h1>
+        </div>
+      </div>
+    );
+  }
 
   const [thumb, category] = await Promise.all([
     news.thumbnail_image ? getFeaturedMediaById(news.thumbnail_image) : null,
@@ -43,15 +53,14 @@ export default async function NewsDetail({ params }: Props) {
     news.short_description || "— No short description provided —";
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-blue-100/80 via-gray-50 to-red-100/80 dark:from-blue-950 dark:via-gray-900 dark:to-red-950 transition-colors duration-300 text-zinc-900 dark:text-zinc-50">
-      <header className="relative mt-auto border-t bg-gradient-to-br from-blue-900/80 via-blue-800/70 to-red-900/80 dark:from-blue-950/90 dark:via-blue-900/80 dark:to-red-950/90 backdrop-blur-sm">
-        <div className="absolute inset-0 bg-black/20 dark:bg-black/40"></div>
+    <div className="min-h-screen bg-page-gradient text-zinc-900 dark:text-zinc-50">
+      {/* <header className="relative mt-auto border-t bg-header-gradient">
         <div className="mx-auto max-w-5xl px-6 h-48 flex items-center justify-center">
           <h1 className="relative text-center text-2xl md:text-3xl font-bold pt-10 text-white">
             {title}
           </h1>
         </div>
-      </header>
+      </header> */}
 
       <main className="mx-auto max-w-3xl px-6 pb-10 pt-10">
         <div className="flex justify-center">
@@ -93,8 +102,7 @@ export default async function NewsDetail({ params }: Props) {
         </section>
       </main>
 
-      <footer className="relative mt-auto border-t bg-gradient-to-br from-blue-900/80 via-blue-800/70 to-red-900/80 dark:from-blue-950/90 dark:via-blue-900/80 dark:to-red-950/90 backdrop-blur-sm">
-        <div className="absolute inset-0 bg-black/20 dark:bg-black/40"></div>
+      <footer className="relative mt-auto border-t ">
         <div className="relative mx-auto max-w-5xl px-6 py-8 text-center">
           <div className="text-xl font-semibold">
             <span className="text-2xl font-bold text-white">Life.</span>
