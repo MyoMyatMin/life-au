@@ -54,13 +54,13 @@ export default async function NewsDetail({ params }: Props) {
 
   return (
     <div className="min-h-screen bg-page-gradient text-zinc-900 dark:text-zinc-50">
-      {/* <header className="relative mt-auto border-t bg-header-gradient">
+      <header className="relative mt-auto border-t bg-header-gradient">
         <div className="mx-auto max-w-5xl px-6 h-48 flex items-center justify-center">
           <h1 className="relative text-center text-2xl md:text-3xl font-bold pt-10 text-white">
             {title}
           </h1>
         </div>
-      </header> */}
+      </header>
 
       <main className="mx-auto max-w-3xl px-6 pb-10 pt-10">
         <div className="flex justify-center">
@@ -101,16 +101,6 @@ export default async function NewsDetail({ params }: Props) {
           </span>
         </section>
       </main>
-
-      <footer className="relative mt-auto border-t ">
-        <div className="relative mx-auto max-w-5xl px-6 py-8 text-center">
-          <div className="text-xl font-semibold">
-            <span className="text-2xl font-bold text-white">Life.</span>
-            <span className="text-red-300">au</span>
-          </div>
-          <p className="mt-1 text-[11px] text-white/70">by d*code 2025</p>
-        </div>
-      </footer>
     </div>
   );
 }
