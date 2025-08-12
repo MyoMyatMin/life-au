@@ -14,8 +14,8 @@ export default async function Apps() {
       
       return {
         ...app,
-        thumbnail_image_url: thumbnailImage?.source_url || null,
-        category_name: category?.name || null,
+        thumbnail_image_url: thumbnailImage?.source_url,
+        category_name: category?.name,
       };
     })
   );

@@ -2,9 +2,19 @@
 
 import { useState, useMemo, useEffect } from "react";
 import SimpleSearch from "../../components/common/searchBar";
-import AppCard from "../../components/apps/appCard";
+import AppCard from '@/components/apps/appCard';
 
-export default function AppsClient({ apps }: { apps: any[] }) {
+interface App {
+    id: number;
+    name: string;
+    short_description: string;
+    thumbnail_image_url?: string;
+    techStack?: string[];
+    students?: string[];
+    category_name?: string;
+}
+
+export default function AppsClient({ apps }: { apps: App[] }) {
   const [searchQuery, setSearchQuery] = useState("");
   const [page, setPage] = useState(1);
   const pageSize = 9; // tweak as you like (e.g., 6/9/12)
@@ -104,7 +114,8 @@ export default function AppsClient({ apps }: { apps: any[] }) {
                   key={app.id ?? app.name}
                   className="h-full transform transition-transform duration-200 hover:-translate-y-1"
                 >
-                  <AppCard app={app} />
+                  <AppCard key={app.id || app.name}
+                    app={app} />
                 </div>
               ))}
             </div>
@@ -128,11 +139,10 @@ export default function AppsClient({ apps }: { apps: any[] }) {
                     type="button"
                     onClick={() => gotoPage(n)}
                     aria-current={n === currentPage ? "page" : undefined}
-                    className={`px-3 py-2 rounded-lg text-sm border ${
-                      n === currentPage
-                        ? "bg-red-600 text-white border-red-600"
-                        : "border-gray-200 dark:border-white/10 hover:bg-gray-50 dark:hover:bg-gray-800"
-                    }`}
+                    className={`px-3 py-2 rounded-lg text-sm border ${n === currentPage
+                      ? "bg-red-600 text-white border-red-600"
+                      : "border-gray-200 dark:border-white/10 hover:bg-gray-50 dark:hover:bg-gray-800"
+                      }`}
                   >
                     {n}
                   </button>
