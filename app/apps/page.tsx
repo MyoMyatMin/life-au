@@ -24,9 +24,5 @@ export default async function Apps() {
     })
   );
 
-  // Create AppsClient component
-  // Pass apps to AppsClient as onSearch function cannot be passed
-  // as props to client component SimpleSearch
-
   return <AppsClient apps={processedApps} />;
 }

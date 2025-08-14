@@ -2,16 +2,17 @@
 
 import { useState, useMemo, useEffect } from "react";
 import SimpleSearch from "../../components/common/searchBar";
-import AppCard from '@/components/apps/appCard';
+import AppCard from "@/components/apps/appCard";
+import PageHeader from "@/components/common/pageHeader";
 
 interface App {
-    id: number;
-    name: string;
-    short_description: string;
-    thumbnail_image_url?: string;
-    techStack?: string[];
-    students?: string[];
-    category_name?: string;
+  id: number;
+  name: string;
+  short_description: string;
+  thumbnail_image_url?: string;
+  techStack?: string[];
+  students?: string[];
+  category_name?: string;
 }
 
 export default function AppsClient({ apps }: { apps: App[] }) {
@@ -73,50 +74,21 @@ export default function AppsClient({ apps }: { apps: App[] }) {
   const gotoPage = (p: number) => setPage(Math.min(Math.max(1, p), totalPages));
 
   return (
-    <section className="relative pt-20 sm:pt-24 min-h-screen">
-      {/* soft background */}
-      <div className="pointer-events-none absolute inset-0 -z-10 bg-gradient-to-b from-gray-50 to-white dark:from-gray-950 dark:to-gray-900" />
-
-      <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-12 justify-center">
-        {/* Header */}
-        <div className="mb-8 flex justify-center">
-          <div className="flex flex-col items-center">
-            <h1 className="text-2xl sm:text-3xl font-bold tracking-tight text-gray-900 dark:text-white">
-              Apps
-            </h1>
-            <p className="mt-2 text-sm text-gray-600 dark:text-gray-300">
-              Welcome to Our Apps
-            </p>
-          </div>
+    <div className="min-h-screen bg-page-gradient">
+      <PageHeader
+        title="Apps"
+        description="Discover the latest applications available on our platform!"
+      />
+      <div className="p-6 max-w-6xl mx-auto">
+        <div className="flex justify-end mb-6">
+          <SimpleSearch onSearch={setSearchQuery} />
         </div>
 
-        {/* Controls */}
-        <div className="mb-6 rounded-xl border border-gray-200/60 dark:border-white/10 bg-white/70 dark:bg-gray-800/60 backdrop-blur p-4 sm:p-5 shadow-sm">
-          <div className="flex">
-            <div className="ml-auto w-full sm:w-72">
-              <SimpleSearch onSearch={setSearchQuery} />
-            </div>
-          </div>
-        </div>
-
-        {/* Grid */}
         {pagedApps.length > 0 ? (
           <>
-            <div
-              className="
-                grid gap-5 sm:gap-6
-                grid-cols-1 sm:grid-cols-2 lg:grid-cols-3
-                auto-rows-fr
-              "
-            >
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
               {pagedApps.map((app) => (
-                <div
-                  key={app.id ?? app.name}
-                  className="h-full transform transition-transform duration-200 hover:-translate-y-1"
-                >
-                  <AppCard key={app.id || app.name}
-                    app={app} />
-                </div>
+                <AppCard key={app.id || app.name} app={app} />
               ))}
             </div>
 
@@ -139,15 +111,19 @@ export default function AppsClient({ apps }: { apps: App[] }) {
                     type="button"
                     onClick={() => gotoPage(n)}
                     aria-current={n === currentPage ? "page" : undefined}
-                    className={`px-3 py-2 rounded-lg text-sm border ${n === currentPage
-                      ? "bg-red-600 text-white border-red-600"
-                      : "border-gray-200 dark:border-white/10 hover:bg-gray-50 dark:hover:bg-gray-800"
-                      }`}
+                    className={`px-3 py-2 rounded-lg text-sm border ${
+                      n === currentPage
+                        ? "bg-red-600 text-white border-red-600"
+                        : "border-gray-200 dark:border-white/10 hover:bg-gray-50 dark:hover:bg-gray-800"
+                    }`}
                   >
                     {n}
                   </button>
                 ) : (
-                  <span key={`dots-${i}`} className="px-2 text-sm text-gray-500">
+                  <span
+                    key={`dots-${i}`}
+                    className="px-2 text-sm text-gray-500"
+                  >
                     {n}
                   </span>
                 )
@@ -172,6 +148,6 @@ export default function AppsClient({ apps }: { apps: App[] }) {
           </div>
         )}
       </div>
-    </section>
+    </div>
   );
 }
