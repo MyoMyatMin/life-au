@@ -49,7 +49,7 @@ export default function AppMediaSlider({
   if (!images || images.length === 0) {
     return (
       <div className="relative h-[260px] w-full overflow-hidden rounded-lg bg-neutral-300 md:h-[340px] flex items-center justify-center text-neutral-600">
-        No image available
+        No preview images available
       </div>
     );
   }
@@ -57,13 +57,14 @@ export default function AppMediaSlider({
   // 1 image → render static (avoid mounting Splide at all)
   if (images.length === 1) {
     return (
-      <div className="relative h-[260px] w-full md:h-[340px]">
+      <div className="relative max-h-[400px] max-w-[400px] flex items-center justify-center">
         <Image
           src={images[0]}
           alt={`${altBase} 1`}
-          fill
-          className="object-cover rounded-lg"
-          sizes="(max-width: 768px) 100vw, 800px"
+          width={120}
+          height={120}
+          className="object-contain object-center rounded-lg w-full h-full"
+          sizes="100%"
           priority
         />
       </div>
@@ -77,13 +78,14 @@ export default function AppMediaSlider({
         <ul className="splide__list">
           {images.map((src, i) => (
             <li className="splide__slide" key={i}>
-              <div className="relative h-[260px] w-full md:h-[340px]">
+              <div className="relative h-full w-full">
                 <Image
                   src={src}
                   alt={`${altBase} ${i + 1}`}
                   fill
-                  className="object-cover rounded-lg"
-                  sizes="(max-width: 768px) 100vw, 800px"
+                  className="object-contain object-center rounded-lg w-full h-full"
+                  sizes="100%"
+                  priority={i === 0} // prioritize first image
                 />
               </div>
             </li>
