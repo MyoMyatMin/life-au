@@ -1,22 +1,28 @@
-import { getAllApplications } from "@/lib/wordpress";
+import {
+  getAllApplications,
+  getFeaturedMediaById,
+  getAppCategoryById,
+} from "@/lib/wordpress";
+import AppsClient from "./appsClient";
+
 export default async function Apps() {
   const apps = await getAllApplications();
-  return (
-    <div className="p-6 mt-20">
-      <h1>Apps Page</h1>
-      <p>This will show the app on life.au</p>
-      <hr />
-      <ul>
-        {apps.map((app) => (
-          <li key={app.id || app.name}>
-            <h2>{app.name}</h2>
-            <p>{app.short_description}</p>
-            <p>Category: {app.category}</p>
-            <p>FeaturedMedia : {app.thumbnail_image}</p>
-            <hr />
-          </li>
-        ))}
-      </ul>
-    </div>
+
+  // Fetch all media and categories in parallel
+  const processedApps = await Promise.all(
+    apps.map(async (app) => {
+      const [thumbnailImage, category] = await Promise.all([
+        app.thumbnail_image ? getFeaturedMediaById(app.thumbnail_image) : null,
+        app.category ? getAppCategoryById(app.category) : null,
+      ]);
+
+      return {
+        ...app,
+        thumbnail_image_url: thumbnailImage?.source_url,
+        category_name: category?.name,
+      };
+    })
   );
+
+  return <AppsClient apps={processedApps} />;
 }

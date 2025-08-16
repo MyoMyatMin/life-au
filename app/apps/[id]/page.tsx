@@ -26,7 +26,15 @@ export default async function AppDetail({ params }: Props) {
   const app = await getApplicationById(Number(id));
 
   if (!app) {
-    return <div className="p-6 mt-24">Application not found</div>;
+    return (
+      <div className="min-h-screen bg-page-gradient flex items-center justify-center">
+        <div className="text-center">
+          <h1 className="text-2xl font-bold text-red-600 dark:text-red-400">
+            Application not found
+          </h1>
+        </div>
+      </div>
+    );
   }
 
   const thumbnailImageRetrieved = app?.thumbnail_image
@@ -50,12 +58,9 @@ export default async function AppDetail({ params }: Props) {
   const sideThumbs = images.slice(0, 3);
 
   return (
-    <div
-      className="min-h-screen bg-gradient-to-br from-blue-100/80 via-gray-50 to-red-100/80 
-                    dark:from-blue-950 dark:via-gray-900 dark:to-red-950 transition-colors duration-300"
-    >
+    <div className="min-h-screen bg-page-gradient">
       {/* FULL-BLEED TOP STRIP */}
-      <section className="w-full bg-gradient-to-r from-blue-900 via-blue-800 to-red-900 dark:from-blue-950 dark:via-gray-900 dark:to-red-950 pt-16">
+      <section className="w-full bg-header-gradient pt-16">
         {/* inner content stays constrained */}
         <div className="max-w-6xl mx-auto px-4 py-6 md:py-8 grid grid-cols-1 md:grid-cols-[auto,1fr] gap-6">
           <div className="overflow-hidden bg-neutral-200 h-20 w-20 md:w-32 md:h-32 lg:w-40 lg:h-40 relative rounded-lg">

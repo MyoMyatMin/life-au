@@ -116,7 +116,7 @@ export interface NewsResponse {
   id: number;
   title: string;
   content: string;
-  excerpt: RenderedContent;
+  excerpt: string;
   thumbnail_image?: number;
   date: string;
   short_description: string;
