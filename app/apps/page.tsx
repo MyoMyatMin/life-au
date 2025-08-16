@@ -1,24 +1,28 @@
-import { getAllApplications } from "@/lib/wordpress";
-import PageHeader from "@/components/common/pageHeader";
+import {
+  getAllApplications,
+  getFeaturedMediaById,
+  getAppCategoryById,
+} from "@/lib/wordpress";
+import AppsClient from "./appsClient";
 
 export default async function Apps() {
   const apps = await getAllApplications();
-  return (
-    <div className="min-h-screen bg-page-gradient">
-      <PageHeader title="Apps" description="Explore our Apps!" />
-      {/* to be implemented later */}
-      <div>
-        {apps.map((app) => (
-          <div key={app.id || app.name}>
-            <h2>{app.name}</h2>
-            <p>{app.short_description}</p>
-            <p>Category: {app.category}</p>
-            {app.thumbnail_image && (
-              <p>Featured Media: {app.thumbnail_image}</p>
-            )}
-          </div>
-        ))}
-      </div>
-    </div>
+
+  // Fetch all media and categories in parallel
+  const processedApps = await Promise.all(
+    apps.map(async (app) => {
+      const [thumbnailImage, category] = await Promise.all([
+        app.thumbnail_image ? getFeaturedMediaById(app.thumbnail_image) : null,
+        app.category ? getAppCategoryById(app.category) : null,
+      ]);
+
+      return {
+        ...app,
+        thumbnail_image_url: thumbnailImage?.source_url,
+        category_name: category?.name,
+      };
+    })
   );
+
+  return <AppsClient apps={processedApps} />;
 }
