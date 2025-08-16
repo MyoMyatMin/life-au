@@ -108,6 +108,8 @@ export default async function AppDetail({ params }: Props) {
             <div className="grid grid-rows-3 gap-4">
               {[0, 1, 2].map((i) => {
                 const src = sideThumbs[i];
+
+                if (!src) return null; // skip if no image
                 return (
                   <div
                     key={i}
