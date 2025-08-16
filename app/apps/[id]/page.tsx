@@ -5,7 +5,6 @@ import {
   getAppCategoryById,
 } from "@/lib/wordpress";
 import Image from "next/image";
-import Footer from "@/components/common/footer";
 import AppMediaSlider from "@/components/apps/appMediaSlider";
 
 type Props = {
@@ -178,8 +177,6 @@ export default async function AppDetail({ params }: Props) {
           App ID: {app.id}
         </div>
       </main>
-
-      <Footer />
     </div>
   );
 }
