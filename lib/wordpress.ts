@@ -322,6 +322,10 @@ export async function getApplicationById(
     developer_3: app.acf.developer_3,
     thumbnail_image: app.featured_media,
     category: app.app_category[0],
+    app_screen_1: app.acf.app_screen_1,
+    app_screen_2: app.acf.app_screen_2,
+    app_screen_3: app.acf.app_screen_3,
+    app_screen_4: app.acf.app_screen_4,
   }));
 }
 

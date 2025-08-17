@@ -93,6 +93,10 @@ export interface Application extends WPEntity {
     developer_1: string;
     developer_2?: string;
     developer_3?: string;
+    app_screen_1?: number;
+    app_screen_2?: number;
+    app_screen_3?: number;
+    app_screen_4?: number;
   };
 }
 
@@ -130,6 +134,10 @@ export interface ApplicationResponse {
   developer_3?: string;
   thumbnail_image?: number;
   category?: number;
+  app_screen_1?: number;
+  app_screen_2?: number;
+  app_screen_3?: number;
+  app_screen_4?: number;
 }
 
 export interface Page extends WPEntity {
