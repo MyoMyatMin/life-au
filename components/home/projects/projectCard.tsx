@@ -36,11 +36,11 @@ const ProjectCard = async ({ project }: ProjectCardProps) => {
   return (
     <>
       <Link href={`/apps/${project.id}`}>
-        <Card className="group hover:shadow-2xl transition-all duration-300 shadow-lg bg-white/80 dark:bg-gray-800/60 hover:bg-white/95 dark:hover:bg-gray-700/80 backdrop-blur-md border border-gray-200/60 dark:border-white/10 h-full flex flex-col cursor-pointer">
-          <div className="relative overflow-hidden rounded-t-lg h-48 w-full">
+        <Card className="group hover:shadow-2xl transition-all duration-300 shadow-lg bg-white/80 dark:bg-gray-800/60 hover:bg-white/95 dark:hover:bg-gray-700/80 backdrop-blur-md border border-gray-200/60 dark:border-white/10 max-h-[360px] h-full flex flex-col cursor-pointer">
+          <div className="relative overflow-hidden rounded-t-lg w-full p-4">
             {thumbnailImageRetrieved?.source_url ? (
               <Image
-                className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
+                className="w-full h-full object-contain  object-center group-hover:scale-105 transition-transform duration-300 min-h-[300px]"
                 src={thumbnailImageRetrieved.source_url}
                 alt={project.title || "Post thumbnail"}
                 width={400}
@@ -69,7 +69,7 @@ const ProjectCard = async ({ project }: ProjectCardProps) => {
               <CardTitle className="text-lg font-semibold text-gray-900 dark:text-white group-hover:text-red-600 dark:group-hover:text-red-400 transition-colors drop-shadow-sm">
                 {project.title}
               </CardTitle>
-              <CardDescription className="text-sm text-gray-700 dark:text-gray-200 line-clamp-3 drop-shadow-sm min-h-[4.5rem]">
+              <CardDescription className="text-sm text-gray-700 dark:text-gray-200 line-clamp-3 drop-shadow-sm overflow-hidden h-12">
                 {project.description}
               </CardDescription>
             </CardHeader>

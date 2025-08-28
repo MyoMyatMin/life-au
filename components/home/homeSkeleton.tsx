@@ -7,23 +7,18 @@ import FooterSkeleton from "@/components/common/footerSkeleton";
 
 export default function HomeLoading() {
   return (
-    <div className="min-h-screen bg-gradient-to-br from-blue-100/80 via-gray-50 to-red-100/80 dark:from-blue-950 dark:via-gray-900 dark:to-red-950 transition-colors duration-300">
+    <div className="min-h-screen bg-page-gradient">
       {/* Header Skeleton */}
       <HeaderSkeleton />
 
       {/* Hero Section Skeleton */}
-      <section className="relative h-[70vh] overflow-hidden pt-16">
-        <div className="absolute inset-0 bg-muted animate-pulse" />
-        <div className="absolute inset-0 bg-gradient-to-br from-blue-900/70 via-blue-800/60 to-red-900/70 dark:from-blue-950/80 dark:via-blue-900/70 dark:to-red-950/80"></div>
-
-        <div className="relative z-10 h-full flex items-center justify-center">
-          <div className="text-white text-left md:text-center max-w-4xl mx-auto px-4">
-            <div className="bg-white/15 dark:bg-black/20 backdrop-blur-lg rounded-2xl p-8 md:p-12 border border-white/30 dark:border-white/10 shadow-2xl">
-              <div className="h-12 w-3/4 mx-auto bg-muted rounded animate-pulse mb-6" />
-              <div className="h-6 w-1/2 mx-auto bg-muted rounded animate-pulse mb-8" />
-              <div className="h-12 w-40 mx-auto bg-muted rounded animate-pulse" />
-            </div>
-          </div>
+      <section className="relative pt-24 pb-12 px-4 sm:px-6 lg:px-8 overflow-hidden min-h-[400px] flex items-center justify-center">
+        <div className="absolute inset-0 bg-header-gradient">
+          <div className="absolute inset-0 bg-black/20 dark:bg-black/30"></div>
+        </div>
+        <div className="relative z-10 max-w-4xl mx-auto text-center">
+          <div className="h-12 w-96 mx-auto bg-white/20 dark:bg-white/10 rounded animate-pulse mb-8" />
+          <div className="h-12 w-40 mx-auto bg-white/20 dark:bg-white/10 rounded animate-pulse" />
         </div>
       </section>
 
@@ -32,8 +27,8 @@ export default function HomeLoading() {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           {/* Glass header container */}
           <div className="text-center mb-12 bg-white/70 dark:bg-black/20 backdrop-blur-md rounded-2xl p-8 border border-gray-200/60 dark:border-white/10 shadow-xl">
-            <div className="h-8 w-64 mx-auto bg-muted rounded animate-pulse mb-4" />
-            <div className="h-5 w-96 mx-auto bg-muted rounded animate-pulse" />
+            <div className="h-8 w-64 mx-auto bg-gray-300/60 dark:bg-gray-600/60 rounded animate-pulse mb-4" />
+            <div className="h-5 w-96 mx-auto bg-gray-300/60 dark:bg-gray-600/60 rounded animate-pulse" />
           </div>
 
           {/* Projects Grid */}
@@ -45,7 +40,7 @@ export default function HomeLoading() {
 
           {/* View All Button */}
           <div className="text-center">
-            <div className="h-12 w-40 mx-auto bg-muted rounded animate-pulse" />
+            <div className="h-12 w-40 mx-auto bg-gray-300/60 dark:bg-gray-600/60 rounded animate-pulse" />
           </div>
         </div>
       </section>
@@ -55,8 +50,8 @@ export default function HomeLoading() {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           {/* Glass header container */}
           <div className="text-center mb-12 bg-white/70 dark:bg-black/20 backdrop-blur-md rounded-2xl p-8 border border-gray-200/60 dark:border-white/10 shadow-xl">
-            <div className="h-8 w-48 mx-auto bg-muted rounded animate-pulse mb-4" />
-            <div className="h-5 w-80 mx-auto bg-muted rounded animate-pulse" />
+            <div className="h-8 w-48 mx-auto bg-gray-300/60 dark:bg-gray-600/60 rounded animate-pulse mb-4" />
+            <div className="h-5 w-80 mx-auto bg-gray-300/60 dark:bg-gray-600/60 rounded animate-pulse" />
           </div>
 
           {/* News Grid */}
@@ -68,7 +63,7 @@ export default function HomeLoading() {
 
           {/* Read More Button */}
           <div className="text-center">
-            <div className="h-12 w-40 mx-auto bg-muted rounded animate-pulse" />
+            <div className="h-12 w-40 mx-auto bg-gray-300/60 dark:bg-gray-600/60 rounded animate-pulse" />
           </div>
         </div>
       </section>

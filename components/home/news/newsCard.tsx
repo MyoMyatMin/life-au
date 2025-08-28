@@ -34,10 +34,10 @@ const NewsCard = async ({ newsArticle }: NewsCardProps) => {
     <>
       <Link href={`/news/${newsArticle.id}`}>
         <Card className="group hover:shadow-2xl transition-all duration-300 shadow-lg bg-white/80 dark:bg-gray-800/60 hover:bg-white/95 dark:hover:bg-gray-700/80 backdrop-blur-md border border-gray-200/60 dark:border-white/10 flex flex-row overflow-hidden min-h-[280px] max-w-[520px] w-full cursor-pointer">
-          <div className="relative overflow-hidden w-1/2 min-h-[280px]">
+          <div className="relative overflow-hidden w-1/2 min-h-[280px] p-5">
             {thumbnailImageRetrieved?.source_url ? (
               <Image
-                className="h-full w-full object-cover group-hover:scale-105 transition-transform duration-300"
+                className="h-full w-full object-cover group-hover:scale-105 transition-transform duration-300 border p-2 rounded-md border-gray-300"
                 src={thumbnailImageRetrieved.source_url}
                 alt={newsArticle.title || "Post thumbnail"}
                 width={400}
